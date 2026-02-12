@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="original">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Card | Sophia & Liam</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. BASE VARIABLES (DEFAULT / ORIGINAL) 
+           ========================================= */
+        :root {
+            /* Palette: Quiet Luxury */
+            --bg-color: #F9F7F2;
+            --text-color: #2F3E46;
+            --accent-color: #D4AF37;
+            --secondary-bg: #FFFFFF;
+            --card-border: none;
+            --card-radius: 8px;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-bengali: 'Hind Siliguri', sans-serif;
+            
+            --nav-bg: rgba(47, 62, 70, 0.98);
+            --nav-text: #fff;
+            --nav-active: var(--accent-color);
+            
+            --section-line: var(--accent-color);
+            --header-monogram-size: 3rem;
+            --bg-image: radial-gradient(#E8E6E1 1px, transparent 1px);
+            --bg-size: 20px 20px;
+            --glow: none; /* For neon effects */
+        }
+
+        /* =========================================
+           2. THEME OVERRIDES 
+           ========================================= */
+
+        /* --- Theme: Midnight Gala --- */
+        [data-theme="midnight"] {
+            --bg-color: #0F172A;
+            --text-color: #E2E8F0;
+            --accent-color: #FCD34D;
+            --secondary-bg: rgba(30, 41, 59, 0.6);
+            --card-border: 1px solid #334155;
+            --card-radius: 2px;
+            --card-shadow: none;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --nav-text: #94a3b8;
+            --header-monogram-size: 3.5rem;
+            --bg-image: radial-gradient(circle at top, #1e293b 0%, #0F172A 70%);
+            --bg-size: 100% 100%;
+        }
+
+        /* --- Theme: Santiniketan Spring --- */
+        [data-theme="santiniketan"] {
+            --bg-color: #FFF8E7;
+            --text-color: #2D2424;
+            --accent-color: #D94A3D; /* Alta Red */
+            --brand-teal: #264653;
+            --secondary-bg: #FFFFFF;
+            --card-border: none;
+            --card-radius: 12px;
+            --card-shadow: 0 5px 15px rgba(38, 70, 83, 0.1);
+            --nav-bg: #264653;
+            --nav-text: #f1f1f1;
+            --nav-active: #D94A3D;
+            --section-line: transparent;
+            --bg-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            --bg-size: auto;
+        }
+
+        /* --- Theme: Neo-Bistro --- */
+        [data-theme="neo"] {
+            --bg-color: #F3F4F6;
+            --text-color: #111827;
+            --accent-color: #6366F1; /* Indigo */
+            --highlight: #F472B6; /* Pink */
+            --secondary-bg: #FFFFFF;
+            --card-border: 2px solid #000;
+            --card-radius: 12px;
+            --card-shadow: 6px 6px 0px #000;
+            --nav-bg: #FFFFFF;
+            --nav-text: #000;
+            --nav-active: #6366F1;
+            --font-heading: 'Montserrat', sans-serif;
+            --section-line: transparent;
+            --bg-image: none;
+            --bg-size: auto;
+        }
+
+        /* --- NEW: Theme: Royal Heritage (Maroon/Gold) --- */
+        [data-theme="royal"] {
+            --bg-color: #4A0404; /* Deep Maroon */
+            --text-color: #FFE5B4; /* Peach/Cream */
+            --accent-color: #FFD700; /* Gold */
+            --secondary-bg: rgba(0, 0, 0, 0.3);
+            --card-border: 1px solid #FFD700; /* Gold Border */
+            --card-radius: 4px;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --nav-bg: #2b0202;
+            --nav-text: #FFE5B4;
+            --nav-active: #FFD700;
+            --font-heading: 'Cormorant Garamond', serif;
+            --section-line: transparent;
+            --bg-image: radial-gradient(circle, transparent 20%, #4A0404 20%, #4A0404 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #4A0404 20%, #4A0404 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#3a0303 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #3a0303 2px, #4A0404 2px) -1px 0;
+            --bg-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+        }
+
+        /* --- NEW: Theme: Botanical Whisper (Sage/Floral) --- */
+        [data-theme="botanical"] {
+            --bg-color: #E9F1EA; /* Sage Mist */
+            --text-color: #354F52; /* Dark Slate */
+            --accent-color: #B56576; /* Dusty Rose */
+            --secondary-bg: rgba(255, 255, 255, 0.8);
+            --card-border: 1px solid #CAD2C5;
+            --card-radius: 20px; /* Soft shapes */
+            --card-shadow: 0 8px 24px rgba(82, 121, 111, 0.15);
+            --nav-bg: #52796F;
+            --nav-text: #fff;
+            --nav-active: #FFD6E0;
+            --font-heading: 'Playfair Display', serif;
+            --section-line: var(--accent-color);
+            --bg-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2352796f' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            --bg-size: auto;
+        }
+
+        /* --- NEW: Theme: Cyber-Love (Neon/Retro) --- */
+        [data-theme="cyber"] {
+            --bg-color: #120428; /* Deep Purple */
+            --text-color: #E0E0E0;
+            --accent-color: #00FFC2; /* Neon Cyan */
+            --secondary-bg: rgba(20, 10, 40, 0.8);
+            --card-border: 1px solid #FF00E6; /* Neon Pink */
+            --card-radius: 0px;
+            --card-shadow: 0 0 10px rgba(255, 0, 230, 0.2);
+            --nav-bg: rgba(0, 0, 0, 0.9);
+            --nav-text: #FF00E6;
+            --nav-active: #00FFC2;
+            --font-heading: 'Orbitron', sans-serif; /* Sci-fi font */
+            --font-body: 'Montserrat', sans-serif;
+            --section-line: var(--accent-color);
+            --bg-image: linear-gradient(rgba(18, 4, 40, 0.9), rgba(18, 4, 40, 0.9)), repeating-linear-gradient(0deg, transparent, transparent 19px, #FF00E6 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, #00FFC2 20px);
+            --bg-size: 100% 100%, 40px 40px, 40px 40px;
+            --glow: 0 0 5px var(--accent-color);
+        }
+
+
+        /* =========================================
+           3. GLOBAL STYLES 
+           ========================================= */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding-bottom: 100px;
+            transition: all 0.5s ease;
+            background-image: var(--bg-image);
+            background-size: var(--bg-size);
+            background-attachment: fixed;
+        }
+
+        /* Language Switching */
+        .lang-bn { display: none; }
+        body.bengali-mode .lang-en { display: none; }
+        body.bengali-mode .lang-bn { display: inline; }
+        body.bengali-mode .lang-bn.block { display: block; }
+        body.bengali-mode { font-family: var(--font-bengali); }
+        body.bengali-mode h1, 
+        body.bengali-mode .dish-name, 
+        body.bengali-mode .section-title,
+        body.bengali-mode .monogram { font-family: var(--font-bengali); font-style: normal; }
+
+        /* --- CONTROLS (Theme & Lang) --- */
+        .controls {
+            position: fixed; top: 20px; right: 20px; z-index: 1100;
+            display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+        }
+
+        .btn-control {
+            background: var(--text-color); color: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 12px; border-radius: 30px;
+            cursor: pointer; font-family: var(--font-body);
+            font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            outline: none;
+        }
+        
+        select.btn-control {
+            appearance: none; padding-right: 25px;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat; background-position: right 8px top 50%; background-size: 8px auto;
+        }
+
+        .btn-control:hover { background: var(--accent-color); color: #fff; }
+
+        /* Specific Control Overrides per Theme */
+        [data-theme="neo"] .btn-control {
+            background: #000; color: #fff; border: 2px solid #000; border-radius: 4px;
+            box-shadow: 3px 3px 0 var(--accent-color);
+        }
+        [data-theme="neo"] .btn-control:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--accent-color); }
+        
+        [data-theme="royal"] .btn-control { border-color: #FFD700; background: #2b0202; color: #FFD700; }
+        [data-theme="cyber"] .btn-control { border-color: #FF00E6; background: #000; color: #00FFC2; text-shadow: 0 0 5px #00FFC2; box-shadow: 0 0 10px #FF00E6; border-radius: 0;}
+
+
+        /* --- HEADER --- */
+        header { text-align: center; padding: 80px 20px 40px; }
+
+        .monogram {
+            font-family: var(--font-heading);
+            font-size: var(--header-monogram-size);
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+            line-height: 1;
+            transition: all 0.5s ease;
+            text-shadow: var(--glow);
+        }
+
+        /* Santiniketan Monogram Style */
+        [data-theme="santiniketan"] .monogram {
+            border: 2px solid var(--accent-color); border-radius: 50%;
+            width: 100px; height: 100px; line-height: 96px; margin: 0 auto 20px;
+        }
+        
+        /* Neo-Bistro Monogram Style */
+        [data-theme="neo"] .monogram { font-weight: 900; letter-spacing: -4px; }
+        
+        /* Royal Monogram Style */
+        [data-theme="royal"] .monogram { border-bottom: 1px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 600; font-size: 2.2rem;
+            margin-bottom: 5px; text-transform: uppercase;
+            letter-spacing: 2px; text-shadow: var(--glow);
+        }
+        [data-theme="neo"] h1 { font-weight: 800; font-size: 3rem; letter-spacing: -1px; }
+
+        .date {
+            font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-color); opacity: 0.7;
+        }
+        [data-theme="neo"] .date {
+            background: var(--highlight); color: white; padding: 2px 8px; opacity: 1;
+            font-weight: 700; transform: rotate(-2deg); display: inline-block;
+        }
+        [data-theme="cyber"] .date { color: #FF00E6; letter-spacing: 4px; font-weight: 700; }
+
+        /* --- SECTIONS --- */
+        .menu-section { padding: 30px 20px; max-width: 600px; margin: 0 auto; scroll-margin-top: 100px; }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem; font-style: italic;
+            text-align: center; margin-bottom: 25px;
+            position: relative; color: var(--text-color);
+            text-shadow: var(--glow);
+        }
+
+        /* Santiniketan Title Style */
+        [data-theme="santiniketan"] .section-title {
+            color: var(--brand-teal); font-style: normal;
+            border-bottom: 2px dashed var(--accent-color);
+            display: inline-block; width: 100%; padding-bottom: 5px;
+        }
+        [data-theme="santiniketan"] .section-title::after { display: none; }
+
+        /* Neo-Bistro Title Style */
+        [data-theme="neo"] .section-title {
+            font-weight: 900; font-style: normal; text-align: left;
+            border-left: 8px solid var(--accent-color); padding-left: 15px;
+        }
+        [data-theme="neo"] .section-title::after { display: none; }
+        
+        /* Royal Title Style */
+        [data-theme="royal"] .section-title { border: 1px solid var(--accent-color); padding: 10px; display: inline-block; width: 100%; }
+        [data-theme="royal"] .section-title::after { display: none; }
+        
+        /* Cyber Title Style */
+        [data-theme="cyber"] .section-title { color: var(--accent-color); letter-spacing: 5px; text-transform: uppercase; border-bottom: 2px solid #FF00E6; display: inline-block; padding: 0 10px 5px; font-style: normal; }
+        [data-theme="cyber"] .section-title::after { display: none; }
+
+        /* Default Title Underline */
+        .section-title::after {
+            content: ''; display: block; width: 40px; height: 1px;
+            background: var(--section-line); margin: 10px auto 0;
+        }
+        /* Midnight Diamond Marker */
+        [data-theme="midnight"] .section-title::after {
+            content: '♦'; background: none; width: auto; height: auto;
+            color: #334155; font-size: 1rem;
+        }
+
+        /* --- CARDS --- */
+        .menu-item {
+            background: var(--secondary-bg);
+            padding: 20px; margin-bottom: 20px;
+            border-radius: var(--card-radius);
+            border: var(--card-border);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.2s ease;
+        }
+        
+        /* Midnight Glass Effect */
+        [data-theme="midnight"] .menu-item { backdrop-filter: blur(5px); }
+        
+        /* Santiniketan Left Border */
+        [data-theme="santiniketan"] .menu-item { border-left: 5px solid var(--accent-color); }
+
+        .menu-item:active { transform: scale(0.98); }
+        /* Neo Hover Effect */
+        [data-theme="neo"] .menu-item:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px #000; }
+        
+        /* Royal Effect */
+        [data-theme="royal"] .menu-item { position: relative; }
+        [data-theme="royal"] .menu-item::before { content: '❖'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--bg-color); color: var(--accent-color); padding: 0 5px; font-size: 0.8rem; }
+        
+        /* Cyber Hover */
+        [data-theme="cyber"] .menu-item:hover { box-shadow: 0 0 20px #FF00E6; border-color: #00FFC2; }
+
+        .item-header {
+            display: flex; justify-content: space-between;
+            align-items: baseline; margin-bottom: 8px;
+        }
+        [data-theme="neo"] .item-header { flex-direction: column; align-items: flex-start; }
+
+        .dish-name {
+            font-family: var(--font-heading);
+            font-size: 1.4rem; font-weight: 600;
+            color: var(--text-color);
+        }
+        [data-theme="santiniketan"] .dish-name { color: var(--brand-teal); font-weight: 700; }
+        [data-theme="neo"] .dish-name { font-weight: 800; }
+        [data-theme="royal"] .dish-name { color: var(--accent-color); letter-spacing: 1px; }
+        [data-theme="cyber"] .dish-name { color: #fff; text-shadow: 0 0 5px #fff; }
+
+        .dish-desc { font-size: 0.95rem; color: var(--text-color); opacity: 0.8; font-weight: 300; }
+        [data-theme="neo"] .dish-desc { font-weight: 500; opacity: 0.7; }
+        [data-theme="cyber"] .dish-desc { color: #d1d1d1; font-family: 'Montserrat', sans-serif; font-weight: 400;}
+
+        /* --- BADGES --- */
+        .badges { display: flex; gap: 5px; }
+        [data-theme="neo"] .badges { margin-top: 5px; }
+
+        .badge {
+            font-size: 0.7rem; padding: 2px 6px;
+            border: 1px solid #ddd; border-radius: 4px;
+            color: #888; text-transform: uppercase;
+        }
+        [data-theme="midnight"] .badge { border-color: var(--accent-color); color: var(--accent-color); border-radius: 0; }
+        [data-theme="santiniketan"] .badge { border: none; font-weight: bold; color: var(--brand-teal); }
+        [data-theme="neo"] .badge { background: #000; color: #fff; border: none; font-weight: 700; }
+        [data-theme="royal"] .badge { border: 1px solid var(--accent-color); color: var(--accent-color); }
+        [data-theme="cyber"] .badge { border: 1px solid #00FFC2; color: #00FFC2; border-radius: 0; box-shadow: 0 0 5px #00FFC2 inset;}
+
+
+        /* --- NAVIGATION --- */
+        .nav-container {
+            position: fixed; background: var(--nav-bg);
+            backdrop-filter: blur(10px); z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        [data-theme="neo"] .nav-container { border-top: 2px solid #000; backdrop-filter: none; }
+        [data-theme="royal"] .nav-container { border-bottom: 2px solid var(--accent-color); }
+        [data-theme="cyber"] .nav-container { border-top: 2px solid #00FFC2; box-shadow: 0 -5px 20px rgba(0,255,194,0.3); }
+
+        .nav-link {
+            color: var(--nav-text); text-decoration: none;
+            font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 1px; padding: 10px; transition: color 0.3s;
+        }
+
+        .nav-link.active { color: var(--nav-active); font-weight: 600; }
+        
+        [data-theme="santiniketan"] .nav-link.active { background: rgba(255,255,255,0.15); border-radius: 4px; color: var(--accent-color); }
+        
+        [data-theme="neo"] .nav-link { color: #000; font-weight: 700; }
+        [data-theme="neo"] .nav-link.active { background: var(--accent-color); color: #fff; transform: skewX(-10deg); display: inline-block; }
+        
+        [data-theme="royal"] .nav-link.active { text-decoration: underline; text-underline-offset: 5px; }
+        [data-theme="cyber"] .nav-link.active { color: #FF00E6; text-shadow: 0 0 8px #FF00E6; }
+
+
+        /* --- RESPONSIVE LAYOUT --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                bottom: 20px; left: 50%; transform: translateX(-50%);
+                width: 90%; max-width: 400px; height: 60px;
+                border-radius: 50px;
+                display: flex; justify-content: space-evenly; align-items: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+            [data-theme="midnight"] .nav-container { border-radius: 0; bottom: 0; width: 100%; max-width: none; border-top: 1px solid #333; }
+            [data-theme="neo"] .nav-container { border-radius: 0; bottom: 0; width: 100%; max-width: none; border-top: 2px solid #000; box-shadow: none; }
+            [data-theme="royal"] .nav-container { bottom: 0; width: 100%; max-width: none; border-radius: 0; border-top: 2px solid var(--accent-color); border-bottom: none; background: #2b0202;}
+            [data-theme="cyber"] .nav-container { bottom: 0; width: 100%; max-width: none; border-radius: 0; }
+        }
+
+        @media (min-width: 769px) {
+            body { padding-top: 60px; padding-bottom: 0; }
+            header { padding-top: 40px; }
+            .nav-container {
+                top: 0; left: 0; width: 100%; height: 60px;
+                border-radius: 0; display: flex; justify-content: center;
+                gap: 40px; align-items: center;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            [data-theme="neo"] .nav-container { border-bottom: 2px solid #000; border-top: none; }
+            [data-theme="midnight"] .nav-container { border-bottom: 1px solid #334155; }
+            [data-theme="royal"] .nav-container { border-bottom: 3px double var(--accent-color); }
+            [data-theme="cyber"] .nav-container { border-bottom: 1px solid #FF00E6; border-top: none;}
+            .controls { top: 15px; right: 40px; }
+        }
+
+        footer {
+            text-align: center; font-size: 0.8rem;
+            color: var(--text-color); opacity: 0.6;
+            padding: 40px 20px; font-family: var(--font-heading); font-style: italic;
+        }
+        [data-theme="cyber"] footer { text-shadow: var(--glow); opacity: 0.9; }
+        
+        html { scroll-behavior: smooth; }
+
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <select class="btn-control" id="themeSelect" onchange="changeTheme(this.value)">
+            <option value="original">Quiet Luxury</option>
+            <option value="midnight">Midnight Gala</option>
+            <option value="santiniketan">Santiniketan Spring</option>
+            <option value="neo">Neo-Bistro</option>
+            <option value="royal">Royal Heritage</option>
+            <option value="botanical">Botanical Whisper</option>
+            <option value="cyber">Cyber-Love</option>
+        </select>
+        <button class="btn-control" onclick="toggleLanguage()">
+            <span class="lang-en">বাংলা</span>
+            <span class="lang-bn">ENG</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="monogram">S & L</div>
+        <h1>
+            <span class="lang-en">The Menu</span>
+            <span class="lang-bn">আহার পর্ব</span>
+        </h1>
+        <div class="date">
+            <span class="lang-en">11<sup>th</sup> March, 2026</span>
+            <span class="lang-bn">১১ই মার্চ, ২০২৬</span>
+        </div>
+    </header>
+
+    <section id="starters" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">To Start</span>
+            <span class="lang-bn">সূচনা পর্ব</span>
+        </h2>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Heirloom Burrata</span>
+                    <span class="lang-bn">হেইরলুম বুরাটা</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Slow-roasted tomatoes, basil pesto oil, crushed pistachio, balsamic glaze.</span>
+                <span class="lang-bn">ধীমে আঁচে ঝলসানো টমেটো, বেসিল পেস্টো অয়েল, পেস্তা কুচি, বালসামিক গ্লেজ।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Seared Scallops</span>
+                    <span class="lang-bn">সিয়ার্ড স্ক্যালপস</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Cauliflower purée, crispy pancetta, lemon butter emulsion.</span>
+                <span class="lang-bn">ফুলকপির পিউরি, মুচমুচে প্যানচেটা, লেমন বাটার ইমালশন।</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="mains" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">The Mains</span>
+            <span class="lang-bn">প্রধান আহার</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Herb-Crusted Lamb</span>
+                    <span class="lang-bn">হার্ব-ক্রাস্টেড ল্যাম্ব</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Rack of lamb, dauphinoise potatoes, seasonal greens, red wine reduction.</span>
+                <span class="lang-bn">র‍্যাক অফ ল্যাম্ব, ডফিনয়েস আলু, মরশুমি শাকসবজি, রেড ওয়াইন রিডাকশন।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wild Mushroom Risotto</span>
+                    <span class="lang-bn">বুনো মাশরুম রিসোটো</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Arborio rice, truffle oil, parmesan crisp, fresh thyme.</span>
+                <span class="lang-bn">আরবোরিও চাল, ট্রাফল অয়েল, পারমেজান ক্রিস্প, টাটকা থাইম।</span>
+            </p>
+        </div>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Pan-Roasted Sea Bass</span>
+                    <span class="lang-bn">প্যান-রোস্টেড সি বাস</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Saffron fennel purée, blistered cherry tomatoes, salsa verde.</span>
+                <span class="lang-bn">জাফরান মৌরি পিউরি, ঝলসানো চেরি টমেটো, সালসা ভার্দে।</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="dessert" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">Sweet Ending</span>
+            <span class="lang-bn">মিষ্টি মুখ</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Dark Chocolate Tart</span>
+                    <span class="lang-bn">ডার্ক চকলেট টার্ট</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Sea salt caramel, raspberry coulis, vanilla bean cream.</span>
+                <span class="lang-bn">সি সল্ট ক্যারামেল, রাস্পবেরি কুলিস, ভ্যানিলা বিন ক্রিম।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wedding Cake</span>
+                    <span class="lang-bn">বিয়ের কেক</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Lemon elderflower sponge with swiss meringue buttercream.</span>
+                <span class="lang-bn">লেমন এল্ডারফ্লাওয়ার স্পঞ্জ, সুইস মেরাং বাটারক্রিম।</span>
+            </p>
+        </div>
+    </section>
+    
+    <section id="drinks" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">To Drink</span>
+            <span class="lang-bn">পানীয়</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Signature Cocktails</span>
+                    <span class="lang-bn">সিগনেচার ককটেল</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en"><strong>The "I Do"</strong> - Gin, Elderflower, Prosecco</span>
+                <span class="lang-bn"><strong>দ্য "আই ডু"</strong> - জিন, এল্ডারফ্লাওয়ার, প্রসেকো</span>
+                <br>
+                <span class="lang-en"><strong>The Groom's Old Fashioned</strong> - Bourbon, Bitters, Orange Peel</span>
+                <span class="lang-bn"><strong>গ্রুমস ওল্ড ফ্যাশনড</strong> - বোরববন, বিটারস, কমলার খোসা</span>
+            </p>
+        </div>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wine Selection</span>
+                    <span class="lang-bn">ওয়াইন সিলেকশন</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Sauvignon Blanc (NZ) & Cabernet Sauvignon (Napa)</span>
+                <span class="lang-bn">সাভিগনন ব্লাঙ্ক (NZ) ও ক্যাবারনেট সাভিগনন (নাপা)</span>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <span class="lang-en">Bon Appétit</span>
+            <span class="lang-bn">বঁ অ্যাপেটি</span>
+        </p>
+        <p>
+            <span class="lang-en">Use hashtag #SophiaAndLiam</span>
+            <span class="lang-bn">হ্যাশট্যাগ #SophiaAndLiam</span>
+        </p>
+    </footer>
+
+    <nav class="nav-container">
+        <a href="#starters" class="nav-link">
+            <span class="lang-en">Starters</span>
+            <span class="lang-bn">সূচনা</span>
+        </a>
+        <a href="#mains" class="nav-link">
+            <span class="lang-en">Mains</span>
+            <span class="lang-bn">প্রধান</span>
+        </a>
+        <a href="#dessert" class="nav-link">
+            <span class="lang-en">Sweets</span>
+            <span class="lang-bn">মিষ্টি</span>
+        </a>
+        <a href="#drinks" class="nav-link">
+            <span class="lang-en">Drinks</span>
+            <span class="lang-bn">পানীয়</span>
+        </a>
+    </nav>
+
+    <script>
+        // 1. Language Toggle Logic
+        function toggleLanguage() {
+            document.body.classList.toggle('bengali-mode');
+            highlightNav();
+        }
+
+        // 2. Theme Switching Logic
+        function changeTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+        }
+
+        // 3. Active State Scrollspy
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightNav() {
+            let current = '';
+            const scrollPosition = window.scrollY;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Offset logic for highlighting
+                if (scrollPosition >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+    </script>
+
+</body>
+</html>
