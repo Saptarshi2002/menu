@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Card | Sophia & Liam</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Hind+Siliguri:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette: Quiet Luxury / Earthy Minimalist */
+            --bg-color: #F9F7F2; /* Soft Cream */
+            --text-color: #2F3E46; /* Dark Charcoal/Green */
+            --accent-color: #D4AF37; /* Muted Gold */
+            --secondary-bg: #FFFFFF;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-bengali: 'Hind Siliguri', sans-serif; /* Special font for Bengali */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding-bottom: 100px;
+            transition: all 0.3s ease;
+
+            /* --- NEW BENGALI AESTHETIC BACKGROUND --- */
+            /* This is an inline SVG pattern of stylized Topor and Leaves in muted gold */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='0.15' stroke-width='1'%3E%3Cpath d='M20,50 C20,35 30,15 35,10 C40,15 50,35 50,50 Z M25,50 L45,50 M28,45 L42,45 M30,40 L40,40' /%3E%3Cpath d='M70,20 Q85,20 95,35 Q90,55 70,70 Q50,55 45,35 Q55,20 70,20 Z M70,20 L70,65' /%3E%3C/g%3E%3C/svg%3E");
+            background-size: 120px 120px; /* Adjust size of motifs here */
+            background-repeat: repeat;
+            background-attachment: fixed; /* Keeps background still while scrolling */
+        }
+
+        /* --- Language Switching Logic --- */
+        /* By default, hide Bengali, show English */
+        .lang-bn { display: none; }
+        
+        /* When body has 'bengali-mode' class: hide English, show Bengali */
+        body.bengali-mode .lang-en { display: none; }
+        body.bengali-mode .lang-bn { display: inline; } /* inline allows span flow */
+        body.bengali-mode .lang-bn.block { display: block; } /* for paragraphs/headers */
+
+        /* Adjust font family when in Bengali mode */
+        body.bengali-mode {
+            font-family: var(--font-bengali);
+        }
+        body.bengali-mode h1, 
+        body.bengali-mode .dish-name, 
+        body.bengali-mode .section-title,
+        body.bengali-mode .monogram {
+            font-family: var(--font-bengali); /* Override Serif for Bengali readability */
+        }
+        
+        /* --- Language Toggle Button --- */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .lang-toggle:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            /* REMOVED old dot pattern so the new body background shows through */
+            position: relative;
+        }
+
+        .monogram {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .date {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+        }
+
+        /* --- Menu Sections --- */
+        .menu-section {
+            padding: 30px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            color: var(--text-color);
+        }
+        
+        /* Remove italic for Bengali titles as it renders poorly */
+        body.bengali-mode .section-title {
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- Menu Items --- */
+        .menu-item {
+            /* Ensure solid background so text is readable over the pattern */
+            background: var(--secondary-bg);
+            padding: 25px; /* Slightly more padding for luxurious feel */
+            margin-bottom: 25px;
+            border-radius: 8px;
+            /* Slightly stronger shadow to pop off the patterned background */
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05); 
+            transition: transform 0.2s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle gold border */
+        }
+
+        .menu-item:active {
+            transform: scale(0.98);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .dish-name {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .dish-desc {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* --- Badges (GF, V) --- */
+        .badges {
+            display: flex;
+            gap: 5px;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE NAVIGATION STYLES --- */
+        .nav-container {
+            position: fixed;
+            background: rgba(47, 62, 70, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-link.active {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+            .nav-container {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 400px;
+                height: 60px;
+                border-radius: 50px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            }
+        }
+
+        /* DESKTOP VIEW */
+        @media (min-width: 769px) {
+            body { padding-bottom: 0; padding-top: 60px; }
+            header { padding-top: 40px; }
+            .nav-container {
+                top: 0; left: 0; width: 100%; height: 60px;
+                border-radius: 0; display: flex; justify-content: center;
+                gap: 40px; align-items: center;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            .nav-link { font-size: 0.9rem; }
+            .menu-section { scroll-margin-top: 100px; }
+            .lang-toggle { top: 15px; right: 40px; }
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            padding: 40px 20px;
+            font-family: var(--font-heading);
+            font-style: italic;
+        }
+        
+        html { scroll-behavior: smooth; }
+
+    </style>
+</head>
+<body>
+
+    <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">
+        <span class="lang-en">বাংলায় দেখুন</span>
+        <span class="lang-bn">English Version</span>
+    </button>
+
+    <header>
+        <div class="monogram">S & L</div>
+        <h1>
+            <span class="lang-en">The Menu</span>
+            <span class="lang-bn">আহার পর্ব</span>
+        </h1>
+        <div class="date">
+            <span class="lang-en">11<sup>th</sup> March, 2026</span>
+            <span class="lang-bn">১১ই মার্চ, ২০২৬</span>
+        </div>
+    </header>
+
+    <section id="starters" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">To Start</span>
+            <span class="lang-bn">সূচনা পর্ব</span>
+        </h2>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Heirloom Burrata</span>
+                    <span class="lang-bn">হেইরলুম বুরাটা</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Slow-roasted tomatoes, basil pesto oil, crushed pistachio, balsamic glaze.</span>
+                <span class="lang-bn">ধীমে আঁচে ঝলসানো টমেটো, বেসিল পেস্টো অয়েল, পেস্তা কুচি, বালসামিক গ্লেজ।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Seared Scallops</span>
+                    <span class="lang-bn">সিয়ার্ড স্ক্যালপস</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Cauliflower purée, crispy pancetta, lemon butter emulsion.</span>
+                <span class="lang-bn">ফুলকপির পিউরি, মুচমুচে প্যানচেটা, লেমন বাটার ইমালশন।</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="mains" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">The Mains</span>
+            <span class="lang-bn">প্রধান আহার</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Herb-Crusted Lamb</span>
+                    <span class="lang-bn">হার্ব-ক্রাস্টেড ল্যাম্ব</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Rack of lamb, dauphinoise potatoes, seasonal greens, red wine reduction.</span>
+                <span class="lang-bn">র‍্যাক অফ ল্যাম্ব, ডফিনয়েস আলু, মরশুমি শাকসবজি, রেড ওয়াইন রিডাকশন।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wild Mushroom Risotto</span>
+                    <span class="lang-bn">বুনো মাশরুম রিসোটো</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Arborio rice, truffle oil, parmesan crisp, fresh thyme.</span>
+                <span class="lang-bn">আরবোরিও চাল, ট্রাফল অয়েল, পারমেজান ক্রিস্প, টাটকা থাইম।</span>
+            </p>
+        </div>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Pan-Roasted Sea Bass</span>
+                    <span class="lang-bn">প্যান-রোস্টেড সি বাস</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">GF</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Saffron fennel purée, blistered cherry tomatoes, salsa verde.</span>
+                <span class="lang-bn">জাফরান মৌরি পিউরি, ঝলসানো চেরি টমেটো, সালসা ভার্দে।</span>
+            </p>
+        </div>
+    </section>
+
+    <section id="dessert" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">Sweet Ending</span>
+            <span class="lang-bn">মিষ্টি মুখ</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Dark Chocolate Tart</span>
+                    <span class="lang-bn">ডার্ক চকলেট টার্ট</span>
+                </span>
+                <div class="badges">
+                    <span class="badge">V</span>
+                </div>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Sea salt caramel, raspberry coulis, vanilla bean cream.</span>
+                <span class="lang-bn">সি সল্ট ক্যারামেল, রাস্পবেরি কুলিস, ভ্যানিলা বিন ক্রিম।</span>
+            </p>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wedding Cake</span>
+                    <span class="lang-bn">বিয়ের কেক</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Lemon elderflower sponge with swiss meringue buttercream.</span>
+                <span class="lang-bn">লেমন এল্ডারফ্লাওয়ার স্পঞ্জ, সুইস মেরাং বাটারক্রিম।</span>
+            </p>
+        </div>
+    </section>
+    
+    <section id="drinks" class="menu-section">
+        <h2 class="section-title">
+            <span class="lang-en">To Drink</span>
+            <span class="lang-bn">পানীয়</span>
+        </h2>
+
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Signature Cocktails</span>
+                    <span class="lang-bn">সিগনেচার ককটেল</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en"><strong>The "I Do"</strong> - Gin, Elderflower, Prosecco</span>
+                <span class="lang-bn"><strong>দ্য "আই ডু"</strong> - জিন, এল্ডারফ্লাওয়ার, প্রসেকো</span>
+                <br>
+                <span class="lang-en"><strong>The Groom's Old Fashioned</strong> - Bourbon, Bitters, Orange Peel</span>
+                <span class="lang-bn"><strong>গ্রুমস ওল্ড ফ্যাশনড</strong> - বোরববন, বিটারস, কমলার খোসা</span>
+            </p>
+        </div>
+        
+        <div class="menu-item">
+            <div class="item-header">
+                <span class="dish-name">
+                    <span class="lang-en">Wine Selection</span>
+                    <span class="lang-bn">ওয়াইন সিলেকশন</span>
+                </span>
+            </div>
+            <p class="dish-desc">
+                <span class="lang-en">Sauvignon Blanc (NZ) & Cabernet Sauvignon (Napa)</span>
+                <span class="lang-bn">সাভিগনন ব্লাঙ্ক (NZ) ও ক্যাবারনেট সাভিগনন (নাপা)</span>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            <span class="lang-en">Bon Appétit</span>
+            <span class="lang-bn">বঁ অ্যাপেটি</span>
+        </p>
+        <p>
+            <span class="lang-en">Use hashtag #SophiaAndLiam</span>
+            <span class="lang-bn">হ্যাশট্যাগ #SophiaAndLiam</span>
+        </p>
+    </footer>
+
+    <nav class="nav-container">
+        <a href="#starters" class="nav-link">
+            <span class="lang-en">Starters</span>
+            <span class="lang-bn">সূচনা</span>
+        </a>
+        <a href="#mains" class="nav-link">
+            <span class="lang-en">Mains</span>
+            <span class="lang-bn">প্রধান</span>
+        </a>
+        <a href="#dessert" class="nav-link">
+            <span class="lang-en">Sweets</span>
+            <span class="lang-bn">মিষ্টি</span>
+        </a>
+        <a href="#drinks" class="nav-link">
+            <span class="lang-en">Drinks</span>
+            <span class="lang-bn">পানীয়</span>
+        </a>
+    </nav>
+
+    <script>
+        // Language Toggle Logic
+        function toggleLanguage() {
+            document.body.classList.toggle('bengali-mode');
+            
+            // Re-calculate Scrollspy immediately after toggle in case layout shifts
+            highlightNav();
+        }
+
+        // Active State Scrollspy
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightNav() {
+            let current = '';
+            const scrollPosition = window.scrollY;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                // Adjusted offset logic
+                if (scrollPosition >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNav);
+    </script>
+
+</body>
+</html>
