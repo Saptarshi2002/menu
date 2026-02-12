@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         /* =========================================
@@ -95,13 +95,13 @@
             --bg-size: auto;
         }
 
-        /* --- NEW: Theme: Royal Heritage (Maroon/Gold) --- */
+        /* --- Theme: Royal Heritage (Maroon/Gold) --- */
         [data-theme="royal"] {
             --bg-color: #4A0404; /* Deep Maroon */
             --text-color: #FFE5B4; /* Peach/Cream */
             --accent-color: #FFD700; /* Gold */
             --secondary-bg: rgba(0, 0, 0, 0.3);
-            --card-border: 1px solid #FFD700; /* Gold Border */
+            --card-border: 1px solid #FFD700;
             --card-radius: 4px;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
             --nav-bg: #2b0202;
@@ -113,14 +113,14 @@
             --bg-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
         }
 
-        /* --- NEW: Theme: Botanical Whisper (Sage/Floral) --- */
+        /* --- Theme: Botanical Whisper (Sage/Floral) --- */
         [data-theme="botanical"] {
             --bg-color: #E9F1EA; /* Sage Mist */
             --text-color: #354F52; /* Dark Slate */
             --accent-color: #B56576; /* Dusty Rose */
             --secondary-bg: rgba(255, 255, 255, 0.8);
             --card-border: 1px solid #CAD2C5;
-            --card-radius: 20px; /* Soft shapes */
+            --card-radius: 20px;
             --card-shadow: 0 8px 24px rgba(82, 121, 111, 0.15);
             --nav-bg: #52796F;
             --nav-text: #fff;
@@ -131,9 +131,9 @@
             --bg-size: auto;
         }
 
-        /* --- NEW: Theme: Cyber-Love (Neon/Retro) --- */
+        /* --- Theme: Cyber-Love (Neon/Retro) --- */
         [data-theme="cyber"] {
-            --bg-color: #120428; /* Deep Purple */
+            --bg-color: #120428;
             --text-color: #E0E0E0;
             --accent-color: #00FFC2; /* Neon Cyan */
             --secondary-bg: rgba(20, 10, 40, 0.8);
@@ -143,12 +143,48 @@
             --nav-bg: rgba(0, 0, 0, 0.9);
             --nav-text: #FF00E6;
             --nav-active: #00FFC2;
-            --font-heading: 'Orbitron', sans-serif; /* Sci-fi font */
-            --font-body: 'Montserrat', sans-serif;
+            --font-heading: 'Orbitron', sans-serif;
             --section-line: var(--accent-color);
             --bg-image: linear-gradient(rgba(18, 4, 40, 0.9), rgba(18, 4, 40, 0.9)), repeating-linear-gradient(0deg, transparent, transparent 19px, #FF00E6 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, #00FFC2 20px);
             --bg-size: 100% 100%, 40px 40px, 40px 40px;
             --glow: 0 0 5px var(--accent-color);
+        }
+
+        /* --- NEW: Theme: Vintage Chronicle (Paper/Typewriter) --- */
+        [data-theme="vintage"] {
+            --bg-color: #F2E8CF; /* Aged Paper */
+            --text-color: #382923; /* Dark Coffee */
+            --accent-color: #BC4749; /* Faded Red ink */
+            --secondary-bg: #F9F5EB;
+            --card-border: 1px dashed #382923;
+            --card-radius: 2px;
+            --card-shadow: 4px 4px 0 rgba(56, 41, 35, 0.1);
+            --nav-bg: #382923;
+            --nav-text: #F2E8CF;
+            --nav-active: #BC4749;
+            --font-heading: 'Courier Prime', monospace; /* Typewriter */
+            --section-line: var(--text-color);
+            --bg-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+            --bg-size: auto;
+        }
+
+        /* --- NEW: Theme: Oceanic Breeze (Gradient/Beach) --- */
+        [data-theme="ocean"] {
+            --bg-color: #E0F7FA;
+            --text-color: #006064; /* Deep Cyan */
+            --accent-color: #FF7043; /* Coral */
+            --secondary-bg: rgba(255, 255, 255, 0.65);
+            --card-border: 1px solid #B2EBF2;
+            --card-radius: 20px;
+            --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --nav-text: #006064;
+            --nav-active: #FF7043;
+            --font-heading: 'Josefin Sans', sans-serif;
+            --section-line: var(--accent-color);
+            /* Sunrise Gradient */
+            --bg-image: linear-gradient(180deg, #E0F7FA 0%, #B2EBF2 50%, #FFE0B2 100%);
+            --bg-size: 100% 100%;
         }
 
 
@@ -167,6 +203,8 @@
             background-image: var(--bg-image);
             background-size: var(--bg-size);
             background-attachment: fixed;
+            /* Ensure gradient covers full height */
+            min-height: 100vh;
         }
 
         /* Language Switching */
@@ -214,6 +252,8 @@
         
         [data-theme="royal"] .btn-control { border-color: #FFD700; background: #2b0202; color: #FFD700; }
         [data-theme="cyber"] .btn-control { border-color: #FF00E6; background: #000; color: #00FFC2; text-shadow: 0 0 5px #00FFC2; box-shadow: 0 0 10px #FF00E6; border-radius: 0;}
+        [data-theme="ocean"] .btn-control { border: 1px solid #FF7043; color: #006064; background: rgba(255,255,255,0.5); }
+        [data-theme="ocean"] select.btn-control { background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23006064%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); }
 
 
         /* --- HEADER --- */
@@ -259,6 +299,8 @@
             font-weight: 700; transform: rotate(-2deg); display: inline-block;
         }
         [data-theme="cyber"] .date { color: #FF00E6; letter-spacing: 4px; font-weight: 700; }
+        [data-theme="vintage"] .date { border-top: 1px dashed var(--text-color); border-bottom: 1px dashed var(--text-color); padding: 5px 0; margin-top: 10px; display: inline-block; }
+
 
         /* --- SECTIONS --- */
         .menu-section { padding: 30px 20px; max-width: 600px; margin: 0 auto; scroll-margin-top: 100px; }
@@ -293,6 +335,14 @@
         /* Cyber Title Style */
         [data-theme="cyber"] .section-title { color: var(--accent-color); letter-spacing: 5px; text-transform: uppercase; border-bottom: 2px solid #FF00E6; display: inline-block; padding: 0 10px 5px; font-style: normal; }
         [data-theme="cyber"] .section-title::after { display: none; }
+
+        /* Vintage Title Style */
+        [data-theme="vintage"] .section-title { font-weight: bold; font-style: normal; text-transform: uppercase; letter-spacing: -1px; text-decoration: underline; text-decoration-style: wavy; text-decoration-color: var(--accent-color);}
+        [data-theme="vintage"] .section-title::after { display: none; }
+
+        /* Ocean Title Style */
+        [data-theme="ocean"] .section-title { font-weight: 300; letter-spacing: 5px; text-transform: uppercase; font-style: normal; border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+        [data-theme="ocean"] .section-title::after { display: none; }
 
         /* Default Title Underline */
         .section-title::after {
@@ -331,6 +381,9 @@
         
         /* Cyber Hover */
         [data-theme="cyber"] .menu-item:hover { box-shadow: 0 0 20px #FF00E6; border-color: #00FFC2; }
+        
+        /* Ocean Glass */
+        [data-theme="ocean"] .menu-item { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 
         .item-header {
             display: flex; justify-content: space-between;
@@ -347,6 +400,7 @@
         [data-theme="neo"] .dish-name { font-weight: 800; }
         [data-theme="royal"] .dish-name { color: var(--accent-color); letter-spacing: 1px; }
         [data-theme="cyber"] .dish-name { color: #fff; text-shadow: 0 0 5px #fff; }
+        [data-theme="vintage"] .dish-name { font-weight: 700; letter-spacing: -0.5px; }
 
         .dish-desc { font-size: 0.95rem; color: var(--text-color); opacity: 0.8; font-weight: 300; }
         [data-theme="neo"] .dish-desc { font-weight: 500; opacity: 0.7; }
@@ -366,6 +420,7 @@
         [data-theme="neo"] .badge { background: #000; color: #fff; border: none; font-weight: 700; }
         [data-theme="royal"] .badge { border: 1px solid var(--accent-color); color: var(--accent-color); }
         [data-theme="cyber"] .badge { border: 1px solid #00FFC2; color: #00FFC2; border-radius: 0; box-shadow: 0 0 5px #00FFC2 inset;}
+        [data-theme="ocean"] .badge { border: 1px solid var(--accent-color); color: var(--accent-color); background: #fff; }
 
 
         /* --- NAVIGATION --- */
@@ -377,6 +432,8 @@
         [data-theme="neo"] .nav-container { border-top: 2px solid #000; backdrop-filter: none; }
         [data-theme="royal"] .nav-container { border-bottom: 2px solid var(--accent-color); }
         [data-theme="cyber"] .nav-container { border-top: 2px solid #00FFC2; box-shadow: 0 -5px 20px rgba(0,255,194,0.3); }
+        [data-theme="ocean"] .nav-container { box-shadow: 0 4px 15px rgba(0,96,100,0.1); }
+        [data-theme="vintage"] .nav-container { border-top: 2px dashed var(--secondary-bg); }
 
         .nav-link {
             color: var(--nav-text); text-decoration: none;
@@ -393,6 +450,9 @@
         
         [data-theme="royal"] .nav-link.active { text-decoration: underline; text-underline-offset: 5px; }
         [data-theme="cyber"] .nav-link.active { color: #FF00E6; text-shadow: 0 0 8px #FF00E6; }
+        
+        [data-theme="vintage"] .nav-link { font-family: 'Courier Prime', monospace; }
+        [data-theme="vintage"] .nav-link.active { text-decoration: line-through; }
 
 
         /* --- RESPONSIVE LAYOUT --- */
@@ -408,6 +468,7 @@
             [data-theme="neo"] .nav-container { border-radius: 0; bottom: 0; width: 100%; max-width: none; border-top: 2px solid #000; box-shadow: none; }
             [data-theme="royal"] .nav-container { bottom: 0; width: 100%; max-width: none; border-radius: 0; border-top: 2px solid var(--accent-color); border-bottom: none; background: #2b0202;}
             [data-theme="cyber"] .nav-container { bottom: 0; width: 100%; max-width: none; border-radius: 0; }
+            [data-theme="vintage"] .nav-container { bottom: 0; width: 100%; max-width: none; border-radius: 0; border-top: 2px dashed #F2E8CF; }
         }
 
         @media (min-width: 769px) {
@@ -423,6 +484,7 @@
             [data-theme="midnight"] .nav-container { border-bottom: 1px solid #334155; }
             [data-theme="royal"] .nav-container { border-bottom: 3px double var(--accent-color); }
             [data-theme="cyber"] .nav-container { border-bottom: 1px solid #FF00E6; border-top: none;}
+            [data-theme="vintage"] .nav-container { border-bottom: 2px dashed var(--secondary-bg); }
             .controls { top: 15px; right: 40px; }
         }
 
@@ -448,6 +510,8 @@
             <option value="royal">Royal Heritage</option>
             <option value="botanical">Botanical Whisper</option>
             <option value="cyber">Cyber-Love</option>
+            <option value="vintage">Vintage Chronicle</option>
+            <option value="ocean">Oceanic Breeze</option>
         </select>
         <button class="btn-control" onclick="toggleLanguage()">
             <span class="lang-en">বাংলা</span>
