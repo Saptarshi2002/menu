@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits | Sophia & Liam</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Custom Bengali Font: Kalpana --- */
+        @font-face {
+            font-family: 'Kalpana';
+            src: url('fonts/Kalpana.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Palette: Quiet Luxury / Earthy Minimalist */
+            --bg-color: #F9F7F2; /* Soft Cream */
+            --text-color: #2F3E46; /* Dark Charcoal/Green */
+            --accent-color: #D4AF37; /* Muted Gold */
+            --secondary-bg: #FFFFFF;
+            
+            /* English Fonts */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Bengali Font */
+            --font-bengali: 'Kalpana', sans-serif; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body); /* Default to English Body Font */
+            line-height: 1.6;
+            padding-bottom: 50px;
+            padding-top: 70px; /* Space for the top bar */
+            transition: all 0.3s ease;
+        }
+
+        /* --- Language Switching Logic --- */
+        .lang-bn { display: none; }
+        
+        body.bengali-mode .lang-en { display: none; }
+        body.bengali-mode .lang-bn { display: inline; } 
+        body.bengali-mode .lang-bn.block { display: block; }
+
+        /* --- Bengali Mode Typography Overrides --- */
+        body.bengali-mode {
+            font-family: var(--font-bengali);
+            font-size: 1.1rem; 
+            font-weight: bold; 
+        }
+        
+        body.bengali-mode h1, 
+        body.bengali-mode .credit-name, 
+        body.bengali-mode .credit-role,
+        body.bengali-mode .monogram,
+        body.bengali-mode .site-nav-link,
+        body.bengali-mode footer {
+            font-family: var(--font-bengali); 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+        }
+
+        body.bengali-mode h1 { font-size: 2.8rem; }
+        
+        /* --- SITE TOP NAVIGATION BAR (BUTTON STYLE) --- */
+        .site-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 70px;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1200;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .site-nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .site-nav-link {
+            text-decoration: none;
+            color: var(--text-color);
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .site-nav-link.active, .site-nav-link:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        body.bengali-mode .site-nav-link {
+            font-size: 1.15rem;
+            text-transform: none;
+            padding: 6px 20px;
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .monogram {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- Credits Specific Styles --- */
+        .credits-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .credit-block {
+            margin-bottom: 35px;
+            padding: 20px;
+            background: var(--secondary-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .credit-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .credit-role {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .credit-name {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Highlighted Name Style */
+        .credit-block.highlighted-block {
+            border: 1px solid var(--accent-color);
+            background-color: #fcfbf8;
+        }
+
+        .credit-name.highlight {
+            font-size: 2.4rem;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        body.bengali-mode .credit-role {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+
+        body.bengali-mode .credit-name {
+            font-size: 1.8rem;
+        }
+
+        body.bengali-mode .credit-name.highlight {
+            font-size: 2.6rem;
+            font-style: normal; /* Kalpana usually looks better without artificial italic */
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+            .site-top-bar {
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .site-top-bar::-webkit-scrollbar { display: none; } 
+            
+            .site-nav-links {
+                gap: 10px;
+                padding: 5px 0;
+            }
+            .site-nav-link {
+                font-size: 0.85rem;
+                padding: 6px 14px;
+                white-space: nowrap; 
+            }
+            body.bengali-mode .site-nav-link {
+                font-size: 1rem;
+                padding: 4px 14px;
+            }
+        }
+
+        /* DESKTOP VIEW */
+        @media (min-width: 769px) {
+            body { padding-top: 130px; } 
+            .site-nav-links { gap: 25px; }
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            padding: 40px 20px;
+            font-family: var(--font-heading);
+            font-style: italic;
+        }
+
+        body.bengali-mode footer {
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="bengali-mode">
+
+    <nav class="site-top-bar">
+        <div class="site-nav-links">
+            <a href="index.html" class="site-nav-link">
+                <span class="lang-en">Menu</span>
+                <span class="lang-bn">খাদ্যতালিকা</span>
+            </a>
+            <a href="concept.html" class="site-nav-link">
+                <span class="lang-en">The Concept</span>
+                <span class="lang-bn">ভাবনা</span>
+            </a>
+            <a href="#" class="site-nav-link active">
+                <span class="lang-en">Credits</span>
+                <span class="lang-bn">কৃতজ্ঞতা</span>
+            </a>
+            
+            <button class="site-nav-link" id="langBtn" onclick="toggleLanguage()">
+                <span class="lang-en">বাংলায় দেখুন</span>
+                <span class="lang-bn">English Version</span>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <div class="monogram">S & L</div>
+        <h1>
+            <span class="lang-en">Credits</span>
+            <span class="lang-bn">কৃতজ্ঞতা স্বীকার</span>
+        </h1>
+    </header>
+
+    <section class="credits-container">
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Tech & Digital</span>
+                <span class="lang-bn">তথ্যপ্রযুক্তি</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Saptarshi Mondal</span>
+                <span class="lang-bn">সপ্তর্ষি মন্ডল</span>
+            </div>
+        </div>
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Event Coordination</span>
+                <span class="lang-bn">সামগ্রিক ব্যবস্থাপনা</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Asit Mondal</span>
+                <span class="lang-bn">অসিত মন্ডল</span>
+            </div>
+        </div>
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Transportation</span>
+                <span class="lang-bn">পরিবহন ব্যবস্থাপণা</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Abhishek Mondal</span>
+                <span class="lang-bn">অভিষেক মন্ডল</span>
+            </div>
+        </div>
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Aesthetics & Styling</span>
+                <span class="lang-bn">সৌন্দর্যায়ন</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Swarnali Mondal</span>
+                <span class="lang-bn">স্বর্ণালী মন্ডল</span>
+            </div>
+        </div>
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Lighting Design</span>
+                <span class="lang-bn">আলোকসজ্জা</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Jayanta Mondal, Pranay Mondal</span>
+                <span class="lang-bn">জয়ন্ত মন্ডল, প্রণয় মন্ডল</span>
+            </div>
+        </div>
+
+        <div class="credit-block">
+            <div class="credit-role">
+                <span class="lang-en">Venue Decor</span>
+                <span class="lang-bn">মন্ডপ সজ্জা</span>
+            </div>
+            <div class="credit-name">
+                <span class="lang-en">Baidya Decorators</span>
+                <span class="lang-bn">বৈদ্য ডেকরেটার্স</span>
+            </div>
+        </div>
+
+        <div class="credit-block highlighted-block">
+            <div class="credit-role">
+                <span class="lang-en">Concept & Vision</span>
+                <span class="lang-bn">মূল ভাবনা</span>
+            </div>
+            <div class="credit-name highlight">
+                <span class="lang-en">Tridib Mondal</span>
+                <span class="lang-bn">ত্রিদিব মন্ডল</span>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>
+            <span class="lang-en">Use hashtag #SophiaAndLiam</span>
+            <span class="lang-bn">হ্যাশট্যাগ #SophiaAndLiam</span>
+        </p>
+    </footer>
+
+    <script>
+        // Language Toggle Logic
+        function toggleLanguage() {
+            document.body.classList.toggle('bengali-mode');
+        }
+    </script>
+
+</body>
+</html>

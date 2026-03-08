@@ -45,7 +45,6 @@
             font-family: var(--font-body); /* Default to English Body Font */
             line-height: 1.6;
             padding-bottom: 100px;
-            padding-top: 70px; /* Space for the new top bar */
             transition: all 0.3s ease;
         }
 
@@ -57,10 +56,11 @@
         body.bengali-mode .lang-bn.block { display: block; }
 
         /* --- Bengali Mode Typography Overrides --- */
+        /* Only applies Kalpana when switched to Bengali */
         body.bengali-mode {
             font-family: var(--font-bengali);
-            font-size: 1.1rem; 
-            font-weight: bold; 
+            font-size: 1.1rem; /* Slightly larger for readability */
+            font-weight: bold; /* Make standard body text bold in Bengali mode */
         }
         
         body.bengali-mode h1, 
@@ -68,73 +68,57 @@
         body.bengali-mode .section-title,
         body.bengali-mode .monogram,
         body.bengali-mode .nav-link,
-        body.bengali-mode .site-nav-link,
         body.bengali-mode .date,
         body.bengali-mode footer {
             font-family: var(--font-bengali); 
-            font-weight: bold; 
+            font-weight: bold; /* Changed to bold */
             letter-spacing: 1px; 
         }
 
-        body.bengali-mode h1 { font-size: 2.8rem; }
-        body.bengali-mode .section-title { font-style: normal; font-size: 2.2rem; }
+        body.bengali-mode h1 {
+            font-size: 2.8rem;
+        }
+
+        body.bengali-mode .section-title {
+            font-style: normal;
+            font-size: 2.2rem;
+        }
         
-        /* --- SITE TOP NAVIGATION BAR (BUTTON STYLE) --- */
-        .site-top-bar {
+        /* --- Language Toggle Button --- */
+        .lang-toggle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            min-height: 70px;
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 20px;
-            z-index: 1200;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .site-nav-links {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .site-nav-link {
-            text-decoration: none;
-            color: var(--text-color);
-            background-color: transparent;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            background: var(--text-color);
+            color: var(--bg-color);
             border: 1px solid var(--accent-color);
+            padding: 8px 16px;
             border-radius: 30px;
-            padding: 8px 20px;
-            font-family: var(--font-heading);
-            font-size: 1rem;
-            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .site-nav-link.active, .site-nav-link:hover {
-            background-color: var(--accent-color);
+        body.bengali-mode .lang-toggle {
+            font-family: var(--font-bengali);
+            font-size: 1rem;
+            font-weight: bold; /* Make the toggle button bold in Bengali too */
+        }
+
+        .lang-toggle:hover {
+            background: var(--accent-color);
             color: #fff;
-        }
-
-        body.bengali-mode .site-nav-link {
-            font-size: 1.15rem;
-            text-transform: none;
-            padding: 6px 20px;
         }
 
         /* --- Header Section --- */
         header {
             text-align: center;
-            padding: 40px 20px 40px;
+            padding: 60px 20px 40px;
             background-image: radial-gradient(#E8E6E1 1px, transparent 1px);
             background-size: 20px 20px;
         }
@@ -168,7 +152,7 @@
             padding: 30px 20px;
             max-width: 600px;
             margin: 0 auto;
-            scroll-margin-top: 140px; 
+            scroll-margin-top: 80px;
         }
 
         .section-title {
@@ -200,7 +184,9 @@
             transition: transform 0.2s ease;
         }
 
-        .menu-item:active { transform: scale(0.98); }
+        .menu-item:active {
+            transform: scale(0.98);
+        }
 
         .item-header {
             display: flex;
@@ -216,10 +202,14 @@
             color: var(--text-color);
         }
 
-        .badges { display: flex; gap: 5px; }
+        /* --- Badges (GF, V) --- */
+        .badges {
+            display: flex;
+            gap: 5px;
+        }
 
         .badge {
-            font-family: sans-serif;
+            font-family: sans-serif; /* Keep badges standard for readability */
             font-size: 0.7rem;
             padding: 2px 6px;
             border: 1px solid #ddd;
@@ -229,7 +219,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- RESPONSIVE SECTION NAVIGATION --- */
+        /* --- RESPONSIVE NAVIGATION STYLES --- */
         .nav-container {
             position: fixed;
             background: rgba(47, 62, 70, 0.98);
@@ -263,28 +253,6 @@
 
         /* MOBILE VIEW */
         @media (max-width: 768px) {
-            .site-top-bar {
-                justify-content: flex-start;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            /* Hide scrollbar for a cleaner look */
-            .site-top-bar::-webkit-scrollbar { display: none; } 
-            
-            .site-nav-links {
-                gap: 10px;
-                padding: 5px 0;
-            }
-            .site-nav-link {
-                font-size: 0.85rem;
-                padding: 6px 14px;
-                white-space: nowrap; /* Keeps buttons from stacking text */
-            }
-            body.bengali-mode .site-nav-link {
-                font-size: 1rem;
-                padding: 4px 14px;
-            }
-
             .nav-container {
                 bottom: 20px;
                 left: 50%;
@@ -302,22 +270,17 @@
 
         /* DESKTOP VIEW */
         @media (min-width: 769px) {
-            body { padding-bottom: 0; padding-top: 130px; } 
-            
+            body { padding-bottom: 0; padding-top: 60px; }
+            header { padding-top: 40px; }
             .nav-container {
-                top: 70px; 
-                left: 0; 
-                width: 100%; 
-                height: 50px;
-                border-radius: 0; 
-                display: flex; 
-                justify-content: center;
-                gap: 40px; 
-                align-items: center;
+                top: 0; left: 0; width: 100%; height: 60px;
+                border-radius: 0; display: flex; justify-content: center;
+                gap: 40px; align-items: center;
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
             .nav-link { font-size: 0.9rem; }
-            .site-nav-links { gap: 25px; }
+            .menu-section { scroll-margin-top: 100px; }
+            .lang-toggle { top: 15px; right: 40px; }
         }
 
         /* --- Footer --- */
@@ -341,27 +304,10 @@
 </head>
 <body class="bengali-mode">
 
-    <nav class="site-top-bar">
-        <div class="site-nav-links">
-            <a href="#" class="site-nav-link active">
-                <span class="lang-en">Menu</span>
-                <span class="lang-bn">খাদ্যতালিকা</span>
-            </a>
-            <a href="concept.html" class="site-nav-link">
-                <span class="lang-en">The Concept</span>
-                <span class="lang-bn">ভাবনা</span>
-            </a>
-            <a href="credits.html" class="site-nav-link">
-                <span class="lang-en">Credits</span>
-                <span class="lang-bn">কৃতজ্ঞতা</span>
-            </a>
-            
-            <button class="site-nav-link" id="langBtn" onclick="toggleLanguage()">
-                <span class="lang-en">বাংলায় দেখুন</span>
-                <span class="lang-bn">English Version</span>
-            </button>
-        </div>
-    </nav>
+    <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">
+        <span class="lang-en">বাংলায় দেখুন</span>
+        <span class="lang-bn">English Version</span>
+    </button>
 
     <header>
         <div class="monogram">S & L</div>
@@ -638,8 +584,9 @@
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
                 
-                if (scrollPosition >= (sectionTop - 250)) {
+                if (scrollPosition >= (sectionTop - 200)) {
                     current = section.getAttribute('id');
                 }
             });
