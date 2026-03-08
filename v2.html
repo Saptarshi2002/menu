@@ -150,7 +150,7 @@
             --glow: 0 0 5px var(--accent-color);
         }
 
-        /* --- NEW: Theme: Vintage Chronicle (Paper/Typewriter) --- */
+        /* --- Theme: Vintage Chronicle (Paper/Typewriter) --- */
         [data-theme="vintage"] {
             --bg-color: #F2E8CF; /* Aged Paper */
             --text-color: #382923; /* Dark Coffee */
@@ -168,7 +168,7 @@
             --bg-size: auto;
         }
 
-        /* --- NEW: Theme: Oceanic Breeze (Gradient/Beach) --- */
+        /* --- Theme: Oceanic Breeze (Gradient/Beach) --- */
         [data-theme="ocean"] {
             --bg-color: #E0F7FA;
             --text-color: #006064; /* Deep Cyan */
@@ -187,6 +187,24 @@
             --bg-size: 100% 100%;
         }
 
+        /* --- NEW: Theme: Classic Envelope (Traditional Bengali) --- */
+        [data-theme="bengali-classic"] {
+            --bg-color: #FDF9F1; /* Ivory/Cream Paper */
+            --text-color: #A31D1D; /* Alta/Sindoor Red */
+            --accent-color: #D4AF37; /* Gold */
+            --secondary-bg: #FFFFFF;
+            --card-border: 2px double #A31D1D;
+            --card-radius: 4px;
+            --card-shadow: 2px 2px 10px rgba(163, 29, 29, 0.08);
+            --nav-bg: #A31D1D;
+            --nav-text: #FDF9F1;
+            --nav-active: #D4AF37;
+            --font-heading: 'Cormorant Garamond', serif;
+            --section-line: #D4AF37;
+            /* A subtle traditional motif repeating pattern */
+            --bg-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 18.5V16h8v2h-8v2.5L29.5 24 27 26.5V40h-2V26.5L22.5 24 20 21.5V24H0v-2h20z' fill='%23a31d1d' fill-opacity='0.04' fill-rule='evenodd'/%3E%3C/svg%3E");
+            --bg-size: auto;
+        }
 
         /* =========================================
            3. GLOBAL STYLES 
@@ -255,6 +273,9 @@
         [data-theme="ocean"] .btn-control { border: 1px solid #FF7043; color: #006064; background: rgba(255,255,255,0.5); }
         [data-theme="ocean"] select.btn-control { background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23006064%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); }
 
+        [data-theme="bengali-classic"] select.btn-control { 
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FDF9F1%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); 
+        }
 
         /* --- HEADER --- */
         header { text-align: center; padding: 80px 20px 40px; }
@@ -281,6 +302,16 @@
         
         /* Royal Monogram Style */
         [data-theme="royal"] .monogram { border-bottom: 1px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
+
+        /* Classic Envelope Monogram Style */
+        [data-theme="bengali-classic"] .monogram { 
+            border: 2px solid var(--accent-color); 
+            display: inline-block; 
+            padding: 10px 25px; 
+            border-radius: 4px; 
+            background: var(--text-color); 
+            color: var(--accent-color); 
+        }
 
         h1 {
             font-family: var(--font-heading);
@@ -344,6 +375,14 @@
         [data-theme="ocean"] .section-title { font-weight: 300; letter-spacing: 5px; text-transform: uppercase; font-style: normal; border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; }
         [data-theme="ocean"] .section-title::after { display: none; }
 
+        /* Classic Envelope Title Style */
+        [data-theme="bengali-classic"] .section-title { 
+            border-bottom: 2px double var(--accent-color); 
+            display: inline-block; 
+            padding-bottom: 5px; 
+        }
+        [data-theme="bengali-classic"] .section-title::after { display: none; }
+
         /* Default Title Underline */
         .section-title::after {
             content: ''; display: block; width: 40px; height: 1px;
@@ -384,6 +423,11 @@
         
         /* Ocean Glass */
         [data-theme="ocean"] .menu-item { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+        /* Classic Envelope Card */
+        [data-theme="bengali-classic"] .menu-item {
+            border-radius: 2px;
+        }
 
         .item-header {
             display: flex; justify-content: space-between;
@@ -512,6 +556,7 @@
             <option value="cyber">Cyber-Love</option>
             <option value="vintage">Vintage Chronicle</option>
             <option value="ocean">Oceanic Breeze</option>
+            <option value="bengali-classic">Classic Envelope</option>
         </select>
         <button class="btn-control" onclick="toggleLanguage()">
             <span class="lang-en">বাংলা</span>
