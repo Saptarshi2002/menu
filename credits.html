@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         /* --- Custom Bengali Font: Kalpana --- */
@@ -74,7 +74,8 @@
             letter-spacing: 1px; 
         }
 
-        body.bengali-mode h1 { font-size: 2.8rem; }
+        /* Increased Main Heading Size for Bengali */
+        body.bengali-mode h1 { font-size: 3.2rem; }
         
         /* --- SITE TOP NAVIGATION BAR (BUTTON STYLE) --- */
         .site-top-bar {
@@ -142,10 +143,11 @@
             letter-spacing: -2px;
         }
 
+        /* Increased Main Heading Size for English */
         h1 {
             font-family: var(--font-heading);
             font-weight: 600;
-            font-size: 2.2rem;
+            font-size: 2.5rem; 
             margin-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -183,12 +185,15 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
+        /* Enlarged Block Headings (Roles) */
         .credit-role {
-            font-size: 0.85rem;
+            font-size: 1.1rem; 
+            font-weight: 600; 
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #888;
             margin-bottom: 8px;
+            transition: color 0.3s ease;
         }
 
         .credit-name {
@@ -198,20 +203,30 @@
             color: var(--text-color);
         }
 
-        /* Highlighted Name Style */
+        /* --- Highlighted Block Styles --- */
         .credit-block.highlighted-block {
-            border: 1px solid var(--accent-color);
+            border: 2px solid #8e16f1; /* Changed border to match the text */
             background-color: #fcfbf8;
+            padding: 30px 20px; 
+        }
+
+        /* Highlight the role as well */
+        .highlighted-block .credit-role {
+            color: #722bbeec; /* Applied requested color */
+            font-size: 1.3rem;
+            letter-spacing: 3px;
         }
 
         .credit-name.highlight {
             font-size: 2.4rem;
-            color: var(--accent-color);
+            color: #8f38edec; /* Applied requested color */
             font-style: italic;
+            margin-top: 5px;
         }
 
+        /* Enlarged Block Headings (Roles) for Bengali */
         body.bengali-mode .credit-role {
-            font-size: 1.1rem;
+            font-size: 1.4rem; 
             letter-spacing: 1px;
             text-transform: none;
         }
@@ -220,9 +235,14 @@
             font-size: 1.8rem;
         }
 
+        /* Highlight Overrides for Bengali */
+        body.bengali-mode .highlighted-block .credit-role {
+            font-size: 1.8rem;
+        }
+
         body.bengali-mode .credit-name.highlight {
             font-size: 2.6rem;
-            font-style: normal; /* Kalpana usually looks better without artificial italic */
+            font-style: normal; 
         }
 
         /* MOBILE VIEW */
