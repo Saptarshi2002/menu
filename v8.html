@@ -19,19 +19,19 @@
         }
 
         :root {
-            /* Palette: Traditional Vintage Bengali */
-            --bg-color: #FAF4E6; /* Tussar Silk / Vintage Paper */
-            --text-color: #3E2723; /* Deep Sepia / Ink */
-            --accent-color: #B22222; /* Sindoor / Alta Red */
-            --gold-accent: #B8860B; /* Vintage Gold / Brass */
-            --secondary-bg: #FDFBF7; /* Lighter inner card background */
+            /* Palette: Bengali Vintage / Sabeki */
+            --bg-color: #EAE3D2; /* Aged Parchment / Sepia */
+            --text-color: #3B2A25; /* Dark Ink Brown */
+            --accent-color: #8B1C1C; /* Traditional Alta/Sindoor Red */
+            --accent-gold: #B8860B; /* Antique Gold */
+            --secondary-bg: #F5EFE1; /* Lighter parchment for cards */
             
             /* English Fonts */
             --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Montserrat', sans-serif;
             
             /* Bengali Font */
-            --font-bengali: 'Kalpana', sans-serif; 
+            --font-bengali: 'Kalpana', serif; 
         }
 
         * {
@@ -42,16 +42,14 @@
 
         body {
             background-color: var(--bg-color);
+            /* Subtle paper texture overlay */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
             color: var(--text-color);
-            font-family: var(--font-body);
+            font-family: var(--font-body); 
             line-height: 1.6;
             padding-bottom: 100px;
             padding-top: 70px;
             transition: all 0.3s ease;
-            /* Subtle vintage paper texture effect */
-            background-image: linear-gradient(rgba(178, 34, 34, 0.03) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(178, 34, 34, 0.03) 1px, transparent 1px);
-            background-size: 20px 20px;
         }
 
         /* --- Language Switching Logic --- */
@@ -64,7 +62,7 @@
         /* --- Bengali Mode Typography Overrides --- */
         body.bengali-mode {
             font-family: var(--font-bengali);
-            font-size: 1.15rem; 
+            font-size: 1.2rem; 
             font-weight: bold; 
         }
         
@@ -82,9 +80,9 @@
         }
 
         body.bengali-mode h1 { font-size: 3rem; color: var(--accent-color); }
-        body.bengali-mode .section-title { font-style: normal; font-size: 2.4rem; }
+        body.bengali-mode .section-title { font-style: normal; font-size: 2.5rem; }
         
-        /* --- SITE TOP NAVIGATION BAR --- */
+        /* --- SITE TOP NAVIGATION BAR (VINTAGE STYLE) --- */
         .site-top-bar {
             position: fixed;
             top: 0;
@@ -92,13 +90,13 @@
             width: 100%;
             min-height: 70px;
             background-color: var(--bg-color);
-            border-bottom: 3px double var(--accent-color); /* Lal-Par Saree Border Effect */
+            border-bottom: 2px solid var(--accent-gold);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 10px 20px;
             z-index: 1200;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 6px rgba(59, 42, 37, 0.1);
         }
 
         .site-nav-links {
@@ -109,13 +107,12 @@
 
         .site-nav-link {
             text-decoration: none;
-            color: var(--accent-color);
+            color: var(--text-color);
             background-color: transparent;
-            border: 1px solid var(--accent-color);
-            border-radius: 2px; /* Sharper edges for vintage feel */
+            border: 1px solid var(--text-color);
             padding: 8px 20px;
             font-family: var(--font-heading);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -124,15 +121,17 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            border-radius: 2px; /* Sharp corners for vintage feel */
         }
 
         .site-nav-link.active, .site-nav-link:hover {
             background-color: var(--accent-color);
-            color: var(--bg-color);
+            color: #fff;
+            border-color: var(--accent-color);
         }
 
         body.bengali-mode .site-nav-link {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             text-transform: none;
             padding: 6px 20px;
         }
@@ -140,25 +139,32 @@
         /* --- Header Section --- */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
-            border-bottom: 2px dashed var(--gold-accent);
-            margin: 0 20px;
+            padding: 50px 20px 40px;
+            position: relative;
+        }
+
+        /* Vintage ornament above header */
+        header::before {
+            content: "❖";
+            font-size: 2rem;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 10px;
         }
 
         .monogram {
             font-family: var(--font-heading);
             font-size: 3.5rem;
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             letter-spacing: -1px;
             font-weight: 700;
-            text-shadow: 1px 1px 0px rgba(178, 34, 34, 0.2);
         }
 
         h1 {
             font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 2.5rem;
+            font-weight: 600;
+            font-size: 2.2rem;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -167,10 +173,15 @@
 
         .date {
             font-size: 1rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--gold-accent);
-            font-weight: 600;
+            color: var(--accent-gold);
+            border-top: 1px solid var(--accent-gold);
+            border-bottom: 1px solid var(--accent-gold);
+            display: inline-block;
+            padding: 5px 15px;
         }
 
         /* --- Menu Sections --- */
@@ -187,42 +198,51 @@
             font-style: italic;
             text-align: center;
             margin-bottom: 35px;
+            position: relative;
             color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
-        /* Traditional decorative lines next to section titles */
-        .section-title::before,
+        /* Vintage floral dingbat divider */
         .section-title::after {
-            content: '❖'; /* Traditional motif */
+            content: '❧ ~ ❦ ~ ☙';
+            display: block;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin: 10px auto 0;
+            letter-spacing: 5px;
             font-style: normal;
-            font-size: 1rem;
-            color: var(--gold-accent);
         }
 
         /* --- Menu Items --- */
         .menu-item {
             background: var(--secondary-bg);
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(178, 34, 34, 0.3);
-            border-left: 6px solid var(--accent-color); /* Strong red accent edge */
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 2px;
+            box-shadow: 3px 3px 8px rgba(59, 42, 37, 0.15);
+            transition: transform 0.2s ease;
             position: relative;
         }
 
-        .menu-item:hover {
-            box-shadow: 4px 4px 12px rgba(178, 34, 34, 0.1);
+        /* Inner dashed border for vintage card look */
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border: 1px dashed rgba(184, 134, 11, 0.5); /* Antique gold dashed */
+            pointer-events: none;
         }
+
+        .menu-item:active { transform: scale(0.98); }
 
         .item-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 0; 
+            position: relative;
+            z-index: 1; /* Keep above the inner border */
         }
 
         .dish-name {
@@ -235,48 +255,50 @@
         .badges { display: flex; gap: 5px; }
 
         .badge {
-            font-family: var(--font-body);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 8px;
-            border: 1px solid var(--gold-accent);
-            color: var(--gold-accent);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border: 1px solid var(--accent-color);
+            background-color: transparent;
+            color: var(--accent-color);
+            border-radius: 2px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: transparent;
         }
 
         /* --- RESPONSIVE SECTION NAVIGATION --- */
         .nav-container {
             position: fixed;
             background: var(--bg-color);
-            border-top: 3px double var(--accent-color); /* Bottom Lal-Par */
+            border-top: 2px solid var(--accent-gold);
             z-index: 1000;
             transition: all 0.3s ease;
+            box-shadow: 0 -2px 10px rgba(59, 42, 37, 0.15);
         }
 
         .nav-link {
             color: var(--text-color);
             text-decoration: none;
             font-family: var(--font-heading);
-            font-size: 1rem;
             font-weight: 700;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 15px;
-            transition: all 0.3s;
+            letter-spacing: 1.5px;
+            padding: 10px;
+            transition: color 0.3s;
             white-space: nowrap;
         }
 
         .nav-link.active {
             color: var(--accent-color);
-            background: rgba(178, 34, 34, 0.05);
             border-bottom: 2px solid var(--accent-color);
         }
 
         body.bengali-mode .nav-link {
             font-size: 1.2rem;
             text-transform: none;
+            font-weight: bold;
         }
 
         /* MOBILE VIEW */
@@ -293,11 +315,8 @@
                 padding: 5px 0;
             }
             .site-nav-link {
-                font-size: 0.95rem;
+                font-size: 0.85rem;
                 padding: 6px 14px;
-            }
-            body.bengali-mode .site-nav-link {
-                font-size: 1.1rem;
             }
 
             .nav-container {
@@ -308,11 +327,11 @@
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-                box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
             }
             .nav-link.active {
                 border-bottom: none;
-                border-top: 2px solid var(--accent-color);
+                text-decoration: underline;
+                text-underline-offset: 4px;
             }
         }
 
@@ -325,29 +344,29 @@
                 left: 0; 
                 width: 100%; 
                 height: 50px;
+                border-top: none;
+                border-bottom: 1px solid var(--accent-gold);
                 display: flex; 
                 justify-content: center;
                 gap: 40px; 
                 align-items: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-                border-bottom: 1px solid rgba(178, 34, 34, 0.2);
             }
-            .nav-link { font-size: 1.1rem; }
             .site-nav-links { gap: 25px; }
         }
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            font-size: 1.1rem;
-            color: var(--accent-color);
+            font-size: 1rem;
+            color: var(--text-color);
             padding: 40px 20px 80px;
             font-family: var(--font-heading);
-            font-weight: 700;
+            font-style: italic;
         }
 
         body.bengali-mode footer {
             font-size: 1.4rem;
+            font-style: normal;
         }
         
         html { scroll-behavior: smooth; }
