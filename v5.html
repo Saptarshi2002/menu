@@ -21,7 +21,7 @@
         :root {
             /* Palette: Traditional Vintage Bengali */
             --bg-color: #FAF4E6; /* Tussar Silk / Vintage Paper */
-            --text-color: #3E2723; /* Deep Sepia / Ink */
+            --text-color: #B22222; /* Deep Sepia / Ink */
             --accent-color: #B22222; /* Sindoor / Alta Red */
             --gold-accent: #B8860B; /* Vintage Gold / Brass */
             --secondary-bg: #FDFBF7; /* Lighter inner card background */
@@ -68,10 +68,10 @@
             font-weight: bold; 
         }
         
-        body.bengali-mode h1, 
+        body.bengali-mode .names,
+        body.bengali-mode .event-type,
         body.bengali-mode .dish-name, 
         body.bengali-mode .section-title,
-        body.bengali-mode .monogram,
         body.bengali-mode .nav-link,
         body.bengali-mode .site-nav-link,
         body.bengali-mode .date,
@@ -81,7 +81,21 @@
             letter-spacing: 1px; 
         }
 
-        body.bengali-mode h1 { font-size: 3rem; color: var(--accent-color); }
+        body.bengali-mode .names { 
+            font-size: 4.5rem; 
+            font-weight: normal; 
+        }
+        
+        body.bengali-mode .event-type { 
+            font-size: 2.5rem; 
+            font-weight: normal; 
+        }
+        
+        body.bengali-mode .date { 
+            font-size: 1.8rem; 
+            font-weight: normal; 
+        }
+
         body.bengali-mode .section-title { font-style: normal; font-size: 2.4rem; }
         
         /* --- SITE TOP NAVIGATION BAR --- */
@@ -145,32 +159,29 @@
             margin: 0 20px;
         }
 
-        .monogram {
+        .names {
             font-family: var(--font-heading);
             font-size: 3.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            color: var(--text-color);
+            margin-bottom: 8px;
             font-weight: 700;
-            text-shadow: 1px 1px 0px rgba(178, 34, 34, 0.2);
+            line-height: 1.1;
         }
 
-        h1 {
+        .event-type {
             font-family: var(--font-heading);
-            font-weight: 700;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-size: 2rem;
             color: var(--text-color);
+            margin-bottom: 12px;
+            font-weight: 500;
+            line-height: 1.2;
         }
 
         .date {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold-accent);
-            font-weight: 600;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-color);
+            line-height: 1.2;
         }
 
         /* --- Menu Sections --- */
@@ -379,14 +390,19 @@
     </nav>
 
     <header>
-        <div class="monogram">Tridib & Madhuri</div>
-        <h1>
-            <span class="lang-en">The Menu</span>
-            <span class="lang-bn">আহার পর্ব</span>
-        </h1>
+        <div class="names">
+            <span class="lang-en">Tridib & Madhuri's</span>
+            <span class="lang-bn">ত্রিদিব ও মাধুরীর</span>
+        </div>
+        
+        <div class="event-type">
+            <span class="lang-en">Wedding Reception Menu</span>
+            <span class="lang-bn">বউভাতের প্রীতিভোজ অনুষ্ঠান</span>
+        </div>
+
         <div class="date">
-            <span class="lang-en">11<sup>th</sup> March, 2026</span>
-            <span class="lang-bn">১১ই মার্চ, ২০২৬</span>
+            <span class="lang-en"><i>[11 March, 2026]</i></span>
+            <span class="lang-bn"><i>[১১ মার্চ, ২০২৬]</i></span>
         </div>
     </header>
 

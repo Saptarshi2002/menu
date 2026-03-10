@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Concept | Tridib & Madhuri</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Custom Bengali Font: Kalpana --- */
+        @font-face {
+            font-family: 'Kalpana';
+            src: url('fonts/Kalpana.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            /* Palette: Traditional Vintage Bengali */
+            --bg-color: #FAF4E6; /* Tussar Silk / Vintage Paper */
+            --text-color: #B22222; /* Deep Sepia / Ink */
+            --accent-color: #B22222; /* Sindoor / Alta Red */
+            --gold-accent: #67604d; /* Vintage Gold / Brass */
+            --secondary-bg: #FDFBF7; /* Lighter inner card background */
+            
+            /* English Fonts */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Bengali Font */
+            --font-bengali: 'Kalpana', sans-serif; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.8;
+            padding-bottom: 60px;
+            padding-top: 70px;
+            transition: all 0.3s ease;
+            background-image: linear-gradient(rgba(178, 34, 34, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(178, 34, 34, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* --- Language Switching Logic --- */
+        .lang-bn { display: none; }
+        
+        body.bengali-mode .lang-en { display: none; }
+        body.bengali-mode .lang-bn { display: inline; } 
+        body.bengali-mode .lang-bn.block { display: block; }
+
+        /* --- Bengali Mode Typography Overrides --- */
+        body.bengali-mode {
+            font-family: var(--font-bengali);
+            font-size: 1.25rem; 
+            font-weight: bold; 
+        }
+        
+        body.bengali-mode .page-title,
+        body.bengali-mode .section-title,
+        body.bengali-mode .site-nav-link,
+        body.bengali-mode .cutlery-table th,
+        body.bengali-mode footer {
+            font-family: var(--font-bengali); 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+        }
+
+        body.bengali-mode .page-title { 
+            font-size: 3.5rem; 
+            font-weight: normal; 
+        }
+        
+        body.bengali-mode .section-title { font-style: normal; font-size: 2.2rem; }
+
+        /* --- SITE TOP NAVIGATION BAR --- */
+        .site-top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 70px;
+            background-color: var(--bg-color);
+            border-bottom: 3px double var(--accent-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1200;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .site-nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .site-nav-link {
+            text-decoration: none;
+            color: var(--accent-color);
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            border-radius: 2px;
+            padding: 8px 20px;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .site-nav-link.active, .site-nav-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        body.bengali-mode .site-nav-link {
+            font-size: 1.25rem;
+            text-transform: none;
+            padding: 6px 20px;
+        }
+
+        /* --- Header Section --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            border-bottom: 2px dashed var(--gold-accent);
+            margin: 0 20px 20px;
+        }
+
+        .page-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--text-color);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        body.bengali-mode .page-subtitle {
+            font-size: 1.4rem;
+            text-transform: none;
+            letter-spacing: 0px;
+        }
+
+        /* --- Concept Sections --- */
+        .concept-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .concept-section {
+            background: var(--secondary-bg);
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(178, 34, 34, 0.2);
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.04);
+            position: relative;
+        }
+
+        /* CENTER ALIGNED HEADINGS */
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center horizontally */
+            text-align: center;      /* Center text if it wraps to next line */
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '❖';
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+        }
+
+        .concept-text {
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        body.bengali-mode .concept-text {
+            font-size: 1.25rem;
+        }
+
+        .concept-list {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            list-style-type: none;
+        }
+
+        .concept-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            text-align: justify;
+        }
+
+        .concept-list li::before {
+            content: '•';
+            color: var(--gold-accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        /* UNDERLINED SUB-HEADINGS */
+        .highlight-point {
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: underline; 
+            text-underline-offset: 4px; 
+        }
+
+        .conclusion-box {
+            background-color: rgba(184, 134, 11, 0.1);
+            padding: 15px 20px;
+            border-left: 3px solid var(--gold-accent);
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        body.bengali-mode .conclusion-box {
+            font-style: normal;
+        }
+
+        /* --- Tabular Format for Cutlery --- */
+        .cutlery-wrapper {
+            margin-top: 30px;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto; /* Allows horizontal scrolling on very small screens */
+            margin-top: 15px;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .cutlery-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--bg-color);
+        }
+
+        .cutlery-table th, 
+        .cutlery-table td {
+            padding: 12px 15px;
+            border: 1px dashed rgba(178, 34, 34, 0.3);
+            text-align: center; /* Set to center */
+            vertical-align: middle; /* Set to middle alignment vertically */
+        }
+
+        .cutlery-table th {
+            background-color: rgba(178, 34, 34, 0.05);
+            color: var(--accent-color);
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            border: 1px solid rgba(178, 34, 34, 0.4);
+        }
+
+        body.bengali-mode .cutlery-table th {
+            font-size: 1.6rem;
+        }
+
+        .cutlery-table td:first-child {
+            font-weight: 600;
+            color: var(--text-color);
+            width: 40%;
+        }
+
+        .cutlery-table td:last-child {
+            color: var(--gold-accent);
+            font-weight: 700;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            color: var(--accent-color);
+            padding: 40px 20px 60px;
+            font-family: var(--font-heading);
+            border-top: 1px dashed rgba(178, 34, 34, 0.2);
+            margin-top: 40px;
+        }
+
+        .footer-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        body.bengali-mode .footer-quote {
+            font-size: 1.5rem;
+            font-style: normal;
+        }
+
+        .quote-author {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #B8860B;
+            font-style: normal;
+        }
+
+        body.bengali-mode .quote-author {
+            font-size: 1.3rem;
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+            .site-top-bar {
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .site-top-bar::-webkit-scrollbar { display: none; } 
+            
+            .site-nav-links { gap: 10px; padding: 5px 0; }
+            .site-nav-link { font-size: 0.95rem; padding: 6px 14px; }
+            body.bengali-mode .site-nav-link { font-size: 1.1rem; }
+
+            .concept-section { padding: 25px 15px; }
+            .section-title { font-size: 1.6rem; }
+            
+            .cutlery-table th, .cutlery-table td { padding: 10px; font-size: 0.95rem; }
+            body.bengali-mode .cutlery-table td { font-size: 1.1rem; }
+
+            .footer-quote { font-size: 1.1rem; }
+            body.bengali-mode .footer-quote { font-size: 1.3rem; }
+        }
+
+        /* DESKTOP VIEW */
+        @media (min-width: 769px) {
+            body { padding-top: 100px; } 
+        }
+
+    </style>
+</head>
+<body class="bengali-mode">
+
+    <nav class="site-top-bar">
+        <div class="site-nav-links">
+            <a href="index.html" class="site-nav-link">
+                <span class="lang-en">Menu</span>
+                <span class="lang-bn">খাদ্যতালিকা</span>
+            </a>
+            <a href="#" class="site-nav-link active">
+                <span class="lang-en">The Concept</span>
+                <span class="lang-bn">ভাবনা</span>
+            </a>
+            <a href="credits.html" class="site-nav-link">
+                <span class="lang-en">Credits</span>
+                <span class="lang-bn">কৃতজ্ঞতা</span>
+            </a>
+            
+            <button class="site-nav-link" id="langBtn" onclick="toggleLanguage()">
+                <span class="lang-en">বাংলায় দেখুন</span>
+                <span class="lang-bn">English Version</span>
+            </button>
+        </div>
+    </nav>
+
+    <header>
+        <div class="page-title">
+            <span class="lang-en">Our Eco-Conscious Vision</span>
+            <span class="lang-bn">আমাদের পরিবেশবান্ধব ভাবনা</span>
+        </div>
+        <div class="page-subtitle">
+            <span class="lang-en">Tradition Meets Sustainability</span>
+            <span class="lang-bn">ঐতিহ্য ও সুস্থায়িত্বের মেলবন্ধন</span>
+        </div>
+    </header>
+
+    <main class="concept-container">
+
+        <section class="concept-section">
+            <h2 class="section-title">
+                <span class="lang-en">A Touch of Rural Bengal</span>
+                <span class="lang-bn">মন্ডপসজ্জায় বাংলার গ্রামীণ সংস্কৃতির ছোঁয়া</span>
+            </h2>
+            <p class="concept-text">
+                <span class="lang-en">The entrance, backdrop, and initial dining area have been thoughtfully designed to replicate the charm of traditional mud-walled huts, complete with thatched roofs and bamboo fences. To authentically capture the essence of Bengal's rich culture, we have incorporated heritage elements such as the <i>kula</i>, earthen lamps, a <i>tulsi mancha</i>, and native niches (<i>kulungi</i>). The rustic beauty is further elevated through traditional <i>Alpona</i> art motifs, bringing a pure village aesthetic to life.</span>
+                <span class="lang-bn">মাটির দেওয়াল, খড়ের ছাউনি ও বাঁখারির বেড়া দিয়ে প্রবেশদ্বার, পশ্চাদপট ও প্রারম্ভিক ভোজনস্থল কুঁড়েঘরের আদলে ফুটিয়ে তোলা হয়েছে। মন্ডপসজ্জায় ব্যবহৃত কুলো, মাটির প্রদীপ, তুলসীমঞ্চ ও কুলুঙ্গির মতো বাংলার সংস্কৃতির ধারক ও বাহক সামগ্রীসমূহকে তুলে ধরা হয়েছে। ঐতিহ্যবাহী কল্কা-আল্পনা চিত্রকলার মাধ্যমে গ্রাম্য ধারায় সৌন্দর্যায়ন করা হয়েছে।</span>
+            </p>
+        </section>
+
+        <section class="concept-section">
+            <h2 class="section-title">
+                <span class="lang-en">Avoiding Microplastic Contamination</span>
+                <span class="lang-bn">খাবারে মাইক্রোপ্লাস্টিক সংক্রমণ এড়ানো</span>
+            </h2>
+            <p class="concept-text">
+                <span class="lang-en">When hot food comes into contact with single-use plastic cups, spoons, or paper/glass items lined with a plastic coating, the food becomes contaminated with microplastics. These tiny particles enter our food chain, penetrating directly into the bloodstream, lungs, and even fetuses. This causes severe health hazards:</span>
+                <span class="lang-bn">একবার ব্যবহারযোগ্য প্লাস্টিকের গ্লাস/চামচ, কাগজের প্লেট, গ্লাস, বাটির গায়ে প্লাস্টিকের আবরণ গরম খাবারের সংস্পর্শে এসে, খাবার মাইক্রোপ্লাস্টিক সংক্রমিত হয়। মাইক্রোপ্লাস্টিক আমাদের খাদ্যশৃঙ্খলে প্রবেশ করে সরাসরি রক্ত, ফুসফুস এমনকি গর্ভস্থ ভ্রূণেও পৌঁছে যাচ্ছে।</span>
+            </p>
+            <ul class="concept-list">
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Hormonal Imbalance:</span> Endocrine Disrupting Chemicals (EDCs) found in plastics can severely reduce fertility.</span>
+                    <span class="lang-bn"><span class="highlight-point">হরমোনের ভারসাম্যহীনতা:</span> এতে থাকা ‘এন্ডোক্রাইন ডিসরাপ্টিং কেমিক্যাল’ (EDC) প্রজনন ক্ষমতা কমিয়ে দেয়।</span>
+                </li>
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Cellular Damage:</span> It creates oxidative stress, which increases the risk of cancer over the long term.</span>
+                    <span class="lang-bn"><span class="highlight-point">কোষের ক্ষতি:</span> এটি অক্সিডেটিভ স্ট্রেস তৈরি করে যা দীর্ঘমেয়াদে ক্যান্সারের ঝুঁকি বাড়ায়।</span>
+                </li>
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Metabolic Issues:</span> It has the potential to impair and destroy liver and kidney functionality.</span>
+                    <span class="lang-bn"><span class="highlight-point">বিপাকীয় সমস্যা:</span> লিভার এবং কিডনির কার্যক্ষমতা নষ্ট করতে পারে।</span>
+                </li>
+            </ul>
+            <div class="conclusion-box">
+                <span class="lang-en">Therefore, when selecting our cutlery, we completely replaced plastics and plastic-coated items with natural alternatives like Sal leaves, terracotta (burnt clay), sugarcane bagasse, areca palm leaves, and natural paper.</span>
+                <span class="lang-bn">আমরা কার্টলারি নির্বাচনের ক্ষেত্রে প্লাস্টিক বা প্লাস্টিকের প্রলেপ দেওয়া দ্রব্যের পরিবর্তে শালপাতা, পোড়ামাটি, আখের ছিবড়ে, সুপারি পাতা, কাগজের মতো প্রাকৃতিক দ্রব্যের ব্যবহার করেছি।</span>
+            </div>
+        </section>
+
+        <section class="concept-section">
+            <h2 class="section-title">
+                <span class="lang-en">Limiting Plastic Usage</span>
+                <span class="lang-bn">প্লাস্টিকের ব্যবহার সীমিত করা</span>
+            </h2>
+            <ul class="concept-list">
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Harm to Wildlife & Marine Life:</span> Globally, about 400 million tons of plastic are produced annually, with only a 9% recycling rate. The rest accumulates in dumping grounds and oceans, causing the deaths of millions of marine turtles, birds, and whales each year.</span>
+                    <span class="lang-bn"><span class="highlight-point">বন্যপ্রাণী ও সামুদ্রিক জীবনের ক্ষতি:</span> প্রতি বছর বিশ্বে প্রায় ৪০০ মিলিয়ন টন প্লাস্টিক উৎপাদিত হয়। এর মধ্যে মাত্র ৯% রিসাইকেল বা পুনর্ব্যবহার করা সম্ভব হয়। বাকিটা ডাম্পিং গ্রাউন্ড বা সমুদ্রে জমা হয়। প্লাস্টিক খেয়ে ফেলে প্রতি বছর লক্ষ লক্ষ সামুদ্রিক কচ্ছপ, পাখি এবং তিমি মারা যাচ্ছে।</span>
+                </li>
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Spread of Disease:</span> Plastic containers do not decompose. When carelessly discarded, they collect rainwater, accelerating mosquito breeding and the spread of mosquito-borne diseases.</span>
+                    <span class="lang-bn"><span class="highlight-point">মশাবাহিত রোগের বিস্তার:</span> প্লাস্টিকের পাত্র মাটিতে মেশে না। যত্রতত্র ফেললে বর্ষাকালে জল জমে মশার বংশবিস্তার ও মশাবাহিত রোগের সংক্রমন ত্বরাণ্বিত করে।</span>
+                </li>
+                <li>
+                    <span class="lang-en"><span class="highlight-point">Toxic Emissions:</span> Burning plastic releases carcinogenic gases known as Dioxin and Furan.</span>
+                    <span class="lang-bn"><span class="highlight-point">বিষাক্ত রাসায়নিক নিঃসরণ:</span> প্লাস্টিক পোড়ালে ডাইঅক্সিন (Dioxin) এবং ফিউরান (Furan) নামক ক্যান্সার সৃষ্টিকারী গ্যাস উৎপন্ন হয়।</span>
+                </li>
+            </ul>
+            <div class="conclusion-box">
+                <span class="lang-en">We have consciously avoided using plastic flowers, water bottles, spoons, and sticks. Instead, we have utilized biodegradable materials that will safely integrate back into the environment after disposal, ultimately enhancing soil fertility.</span>
+                <span class="lang-bn">আমরা প্লাস্টিকের ফুল, জলের বোতল, চামচ, কাঠি ইত্যাদির ব্যবহার সচেতনভাবে এড়িয়ে পরিবর্তে বায়োডিগ্রেডেবল সামগ্রীর ব্যবহার করা হয়েছে। যেগুলো ফেলে দেওয়ার পর পরিবেশের সাথে মিশে যাবে এবং মাটির উর্বরতা বৃদ্ধিতে সহায়ক হবে।</span>
+            </div>
+        </section>
+
+        <section class="concept-section">
+            <h2 class="section-title">
+                <span class="lang-en">Maintaining Hygiene Standards</span>
+                <span class="lang-bn">স্বাস্থ্যবিধির গুণমান বজায় রাখা</span>
+            </h2>
+            <p class="concept-text">
+                <span class="lang-en">At large events, vast quantities of plates and glasses are usually washed in stagnant tubs of water rather than under running water. This leads to cross-contamination, spreading germs from one plate to another. Hurried washing often leaves behind soap residue and oil stains. Furthermore, plates are frequently wiped with dirty cloths or stacked while still wet—creating a moist environment where bacteria multiply rapidly. Due to exhaustion or negligence, cleaning staff often fail to maintain proper sanitary standards.</span>
+                <span class="lang-bn">বড় অনুষ্ঠানে প্রচুর প্লেট-গ্লাস সাধারণত দুটি আবদ্ধ পাত্রের জলে ধোয়া হয়। Running water ব্যবহার না করায় জীবাণু এক প্লেট থেকে অন্য প্লেটে ছড়িয়ে পড়ে (Cross-contamination)। তাড়াহুড়ো করে ধোয়ার কারণে অনেক সময় প্লেটে সাবানের অবশিষ্টাংশ বা তেলের দাগ থেকে যায়। প্লেটগুলো ধোয়ার পর নোংরা কাপড় দিয়ে মোছা হয় বা ভেজা অবস্থায় স্তূপ করে রাখা হয়। আর্দ্র পরিবেশে ব্যাকটেরিয়া খুব দ্রুত বংশবৃদ্ধি করে। কর্মীরা ক্লান্ত হয়ে বা অবহেলায় সঠিক মান বজায় রেখে পরিষ্কার করেন আধুনিক পদ্ধতিতে।</span>
+            </p>
+            <div class="conclusion-box">
+                <span class="lang-en">To uphold uncompromising hygiene standards, we have implemented single-use biodegradable cutlery for every item, ensuring that the possibility of germ transmission between guests is practically nonexistent.</span>
+                <span class="lang-bn">তাই স্বাস্থ্যবিধির গুণমান বজায় রাখার জন্য আমরা প্রতিটা ক্ষেত্রে একবার ব্যবহারযোগ্য কার্টলারি ব্যবহার করেছি, যেখানে একজনের জীবানু অন্যজনে যাওয়ার সম্ভাবনা নেই বললেই চলে।</span>
+            </div>
+
+            <div class="cutlery-wrapper">
+                <h3 class="section-title" style="font-size: 1.5rem;">
+                    <span class="lang-en">Our Eco-Friendly Cutlery Selection</span>
+                    <span class="lang-bn">আমাদের পরিবেশবান্ধব কার্টলারি তালিকা</span>
+                </h3>
+                
+                <div class="table-responsive">
+                    <table class="cutlery-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span class="lang-en">Item</span>
+                                    <span class="lang-bn">ব্যবহৃত সামগ্রী</span>
+                                </th>
+                                <th>
+                                    <span class="lang-en">Eco-Friendly Material</span>
+                                    <span class="lang-bn">পরিবেশবান্ধব উপাদান</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Coffee Cup</span>
+                                    <span class="lang-bn">কফির খুলি</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Terracotta / Earth</span>
+                                    <span class="lang-bn">মাটি</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Pakora Bowl</span>
+                                    <span class="lang-bn">পকোড়ার বাটি</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Sal Leaf</span>
+                                    <span class="lang-bn">শালপাতা</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Sweet Corn Bowl</span>
+                                    <span class="lang-bn">সুইট কর্ন চাটের বাটি</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Sugarcane Bagasse</span>
+                                    <span class="lang-bn">আখের ছিবড়ে</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Spoons</span>
+                                    <span class="lang-bn">চামচ</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Corn Starch</span>
+                                    <span class="lang-bn">ভুট্টার শ্বেতসার</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Jalebi Plate</span>
+                                    <span class="lang-bn">জিলিপির প্লেট</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Paper</span>
+                                    <span class="lang-bn">কাগজ</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Dinner Plate</span>
+                                    <span class="lang-bn">নৈশভোজের থালা</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Areca Palm Leaf</span>
+                                    <span class="lang-bn">সুপারি পাতা</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Drinking Glass</span>
+                                    <span class="lang-bn">গ্লাস</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Sugarcane Bagasse</span>
+                                    <span class="lang-bn">আখের ছিবড়ে</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Parcel Container</span>
+                                    <span class="lang-bn">পার্সেল কন্টেনার</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Sugarcane Bagasse</span>
+                                    <span class="lang-bn">আখের ছিবড়ে</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Parcel Carry Bag</span>
+                                    <span class="lang-bn">পার্সেল ক্যারিব্যাগ</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">PLA Biodegradable Plastic</span>
+                                    <span class="lang-bn">পলি ল্যাক্টিক অ্যাসিড দ্বারা গঠিত পচনশীল জৈব প্লাস্টিক</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="lang-en">Toothpick</span>
+                                    <span class="lang-bn">দাঁতের কাঠি</span>
+                                </td>
+                                <td>
+                                    <span class="lang-en">Wood</span>
+                                    <span class="lang-bn">কাঠ</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-quote">
+            <span class="lang-en">
+                ❝ I shall make this world fit for this child to live in, <br>
+                This is my firm pledge to the newborn. ❞
+                <span class="quote-author">~ Sukanta Bhattacharya</span>
+            </span>
+            <span class="lang-bn">
+                ❝ এ বিশ্বকে এ শিশুর বাসযোগ্য ক’রে যাব আমি <br>
+                নবজাতকের কাছে এ আমার দৃঢ় অঙ্গীকার। ❞
+                <span class="quote-author">~ সুকান্ত ভট্টাচার্য</span>
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Logic (Matching original structure)
+        function toggleLanguage() {
+            document.body.classList.toggle('bengali-mode');
+        }
+    </script>
+
+</body>
+</html>
