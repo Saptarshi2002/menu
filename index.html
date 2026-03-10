@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         /* --- Custom Bengali Font: Kalpana --- */
@@ -19,11 +19,12 @@
         }
 
         :root {
-            /* Palette: Quiet Luxury / Earthy Minimalist */
-            --bg-color: #F9F7F2; /* Soft Cream */
-            --text-color: #2F3E46; /* Dark Charcoal/Green */
-            --accent-color: #D4AF37; /* Muted Gold */
-            --secondary-bg: #FFFFFF;
+            /* Palette: Traditional Vintage Bengali */
+            --bg-color: #FAF4E6; /* Tussar Silk / Vintage Paper */
+            --text-color: #B22222; /* Deep Sepia / Ink */
+            --accent-color: #B22222; /* Sindoor / Alta Red */
+            --gold-accent: #B8860B; /* Vintage Gold / Brass */
+            --secondary-bg: #FDFBF7; /* Lighter inner card background */
             
             /* English Fonts */
             --font-heading: 'Cormorant Garamond', serif;
@@ -42,11 +43,15 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: var(--font-body); /* Default to English Body Font */
+            font-family: var(--font-body);
             line-height: 1.6;
             padding-bottom: 100px;
-            padding-top: 70px; /* Space for the new top bar */
+            padding-top: 70px;
             transition: all 0.3s ease;
+            /* Subtle vintage paper texture effect */
+            background-image: linear-gradient(rgba(178, 34, 34, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(178, 34, 34, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
 
         /* --- Language Switching Logic --- */
@@ -59,14 +64,14 @@
         /* --- Bengali Mode Typography Overrides --- */
         body.bengali-mode {
             font-family: var(--font-bengali);
-            font-size: 1.1rem; 
+            font-size: 1.15rem; 
             font-weight: bold; 
         }
         
-        body.bengali-mode h1, 
+        body.bengali-mode .names,
+        body.bengali-mode .event-type,
         body.bengali-mode .dish-name, 
         body.bengali-mode .section-title,
-        body.bengali-mode .monogram,
         body.bengali-mode .nav-link,
         body.bengali-mode .site-nav-link,
         body.bengali-mode .date,
@@ -76,10 +81,24 @@
             letter-spacing: 1px; 
         }
 
-        body.bengali-mode h1 { font-size: 2.8rem; }
-        body.bengali-mode .section-title { font-style: normal; font-size: 2.2rem; }
+        body.bengali-mode .names { 
+            font-size: 4.5rem; 
+            font-weight: normal; 
+        }
         
-        /* --- SITE TOP NAVIGATION BAR (BUTTON STYLE) --- */
+        body.bengali-mode .event-type { 
+            font-size: 2.5rem; 
+            font-weight: normal; 
+        }
+        
+        body.bengali-mode .date { 
+            font-size: 1.8rem; 
+            font-weight: normal; 
+        }
+
+        body.bengali-mode .section-title { font-style: normal; font-size: 2.4rem; }
+        
+        /* --- SITE TOP NAVIGATION BAR --- */
         .site-top-bar {
             position: fixed;
             top: 0;
@@ -87,12 +106,13 @@
             width: 100%;
             min-height: 70px;
             background-color: var(--bg-color);
+            border-bottom: 3px double var(--accent-color); /* Lal-Par Saree Border Effect */
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 10px 20px;
             z-index: 1200;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
         .site-nav-links {
@@ -103,14 +123,14 @@
 
         .site-nav-link {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--accent-color);
             background-color: transparent;
             border: 1px solid var(--accent-color);
-            border-radius: 30px;
+            border-radius: 2px; /* Sharper edges for vintage feel */
             padding: 8px 20px;
             font-family: var(--font-heading);
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -122,11 +142,11 @@
 
         .site-nav-link.active, .site-nav-link:hover {
             background-color: var(--accent-color);
-            color: #fff;
+            color: var(--bg-color);
         }
 
         body.bengali-mode .site-nav-link {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             text-transform: none;
             padding: 6px 20px;
         }
@@ -134,131 +154,126 @@
         /* --- Header Section --- */
         header {
             text-align: center;
-            padding: 40px 20px 40px;
-            background-image: radial-gradient(#E8E6E1 1px, transparent 1px);
-            background-size: 20px 20px;
+            padding: 60px 20px 40px;
+            border-bottom: 2px dashed var(--gold-accent);
+            margin: 0 20px;
         }
 
-        .monogram {
+        .names {
             font-family: var(--font-heading);
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: -2px;
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.1;
         }
 
-        h1 {
+        .event-type {
             font-family: var(--font-heading);
-            font-weight: 600;
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 12px;
+            font-weight: 500;
+            line-height: 1.2;
         }
 
         .date {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #888;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-color);
+            line-height: 1.2;
         }
 
         /* --- Menu Sections --- */
         .menu-section {
-            padding: 30px 20px;
-            max-width: 600px;
+            padding: 40px 20px;
+            max-width: 650px;
             margin: 0 auto;
             scroll-margin-top: 140px; 
         }
 
         .section-title {
             font-family: var(--font-heading);
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-style: italic;
             text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-            color: var(--text-color);
+            margin-bottom: 35px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
+        /* Traditional decorative lines next to section titles */
+        .section-title::before,
         .section-title::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background: var(--accent-color);
-            margin: 10px auto 0;
+            content: '❖'; /* Traditional motif */
+            font-style: normal;
+            font-size: 1rem;
+            color: var(--gold-accent);
         }
 
         /* --- Menu Items --- */
         .menu-item {
             background: var(--secondary-bg);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: transform 0.2s ease;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(178, 34, 34, 0.3);
+            border-left: 6px solid var(--accent-color); /* Strong red accent edge */
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
         }
 
-        .menu-item:active { transform: scale(0.98); }
+        .menu-item:hover {
+            box-shadow: 4px 4px 12px rgba(178, 34, 34, 0.1);
+        }
 
         .item-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 4px; 
+            align-items: center;
         }
 
         .dish-name {
             font-family: var(--font-heading);
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--text-color);
-        }
-
-        .badges { display: flex; gap: 5px; }
-
-        .badge {
-            font-family: sans-serif;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         /* --- RESPONSIVE SECTION NAVIGATION --- */
         .nav-container {
             position: fixed;
-            background: rgba(47, 62, 70, 0.98);
-            backdrop-filter: blur(10px);
+            background: var(--bg-color);
+            border-top: 3px double var(--accent-color); /* Bottom Lal-Par */
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         .nav-link {
-            color: #fff;
+            color: var(--text-color);
             text-decoration: none;
-            font-family: var(--font-body);
-            font-size: 0.75rem;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 10px;
-            transition: color 0.3s;
+            padding: 10px 15px;
+            transition: all 0.3s;
             white-space: nowrap;
         }
 
         .nav-link.active {
             color: var(--accent-color);
-            font-weight: 600;
+            background: rgba(178, 34, 34, 0.05);
+            border-bottom: 2px solid var(--accent-color);
         }
 
         body.bengali-mode .nav-link {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-transform: none;
-            font-weight: normal;
         }
 
         /* MOBILE VIEW */
@@ -268,7 +283,6 @@
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
             }
-            /* Hide scrollbar for a cleaner look */
             .site-top-bar::-webkit-scrollbar { display: none; } 
             
             .site-nav-links {
@@ -276,27 +290,26 @@
                 padding: 5px 0;
             }
             .site-nav-link {
-                font-size: 0.85rem;
+                font-size: 0.95rem;
                 padding: 6px 14px;
-                white-space: nowrap; /* Keeps buttons from stacking text */
             }
             body.bengali-mode .site-nav-link {
-                font-size: 1rem;
-                padding: 4px 14px;
+                font-size: 1.1rem;
             }
 
             .nav-container {
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                max-width: 400px;
+                bottom: 0;
+                left: 0;
+                width: 100%;
                 height: 60px;
-                border-radius: 50px;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+            }
+            .nav-link.active {
+                border-bottom: none;
+                border-top: 2px solid var(--accent-color);
             }
         }
 
@@ -309,30 +322,29 @@
                 left: 0; 
                 width: 100%; 
                 height: 50px;
-                border-radius: 0; 
                 display: flex; 
                 justify-content: center;
                 gap: 40px; 
                 align-items: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                border-bottom: 1px solid rgba(178, 34, 34, 0.2);
             }
-            .nav-link { font-size: 0.9rem; }
+            .nav-link { font-size: 1.1rem; }
             .site-nav-links { gap: 25px; }
         }
 
         /* --- Footer --- */
         footer {
             text-align: center;
-            font-size: 0.8rem;
-            color: #aaa;
-            padding: 40px 20px;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            padding: 40px 20px 80px;
             font-family: var(--font-heading);
-            font-style: italic;
+            font-weight: 700;
         }
 
         body.bengali-mode footer {
-            font-size: 1.2rem;
-            font-style: normal;
+            font-size: 1.4rem;
         }
         
         html { scroll-behavior: smooth; }
@@ -364,14 +376,19 @@
     </nav>
 
     <header>
-        <div class="monogram">Tridib & Madhuri</div>
-        <h1>
-            <span class="lang-en">The Menu</span>
-            <span class="lang-bn">আহার পর্ব</span>
-        </h1>
+        <div class="names">
+            <span class="lang-en">Tridib & Madhuri's</span>
+            <span class="lang-bn">ত্রিদিব ও মাধুরীর</span>
+        </div>
+        
+        <div class="event-type">
+            <span class="lang-en">Wedding Reception Menu</span>
+            <span class="lang-bn">বউভাতের প্রীতিভোজ অনুষ্ঠান</span>
+        </div>
+
         <div class="date">
-            <span class="lang-en">11<sup>th</sup> March, 2026</span>
-            <span class="lang-bn">১১ই মার্চ, ২০২৬</span>
+            <span class="lang-en"><i>[11 March, 2026]</i></span>
+            <span class="lang-bn"><i>[১১ মার্চ, ২০২৬]</i></span>
         </div>
     </header>
 
@@ -387,7 +404,6 @@
                     <span class="lang-en">Sweet Corn Chaat (Counter) </span>
                     <span class="lang-bn">সুইট কর্ন চাট  (কাউন্টার)</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -397,7 +413,6 @@
                     <span class="lang-en">Fuchka (Counter)</span>
                     <span class="lang-bn">ফুচকা  (কাউন্টার)</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -423,7 +438,6 @@
                     <span class="lang-en">Korai Sutir Kachuri</span>
                     <span class="lang-bn">কড়াইশুঁটির কচুরি</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -433,7 +447,6 @@
                     <span class="lang-en">Aachari Dum Aloo</span>
                     <span class="lang-bn">আচারি আলুর দম</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -452,7 +465,6 @@
                     <span class="lang-en">Kashundi</span>
                     <span class="lang-bn">কাসুন্দি</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -462,7 +474,6 @@
                     <span class="lang-en">Salad</span>
                     <span class="lang-bn">স্যালাড</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -472,7 +483,6 @@
                     <span class="lang-en">Basanti Polao</span>
                     <span class="lang-bn">বাসন্তী পোলাও</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -500,7 +510,6 @@
                     <span class="lang-en">Strawberry Chutney</span>
                     <span class="lang-bn">স্ট্রবেরি চাটনি</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -510,7 +519,6 @@
                     <span class="lang-en">Papad</span>
                     <span class="lang-bn">পাপড়</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -520,7 +528,6 @@
                     <span class="lang-en">Hajmola (Limca / Chat-Cola flavour)</span>
                     <span class="lang-bn">হজমোলা (লিমকা / চাট-কোলা ফ্লেভার)</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
     </section>
@@ -537,7 +544,6 @@
                     <span class="lang-en">Rasogolla</span>
                     <span class="lang-bn">রসগোল্লা</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -547,7 +553,6 @@
                     <span class="lang-en">Sandesh</span>
                     <span class="lang-bn">সন্দেশ</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -557,7 +562,6 @@
                     <span class="lang-en">Nolen Gur Ice-Cream (Counter)</span>
                     <span class="lang-bn">নলেন গুড়ের আইসক্রিম (কাউন্টার)</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
 
@@ -567,7 +571,6 @@
                     <span class="lang-en">Jalebi (Counter)</span>
                     <span class="lang-bn">জিলিপি (কাউন্টার)</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
     </section>
@@ -584,15 +587,14 @@
                     <span class="lang-en">Coffee</span>
                     <span class="lang-bn">কফি</span>
                 </span>
-                <div class="badges"><span class="badge">V</span></div>
             </div>
         </div>
     </section>
 
     <footer>
         <p>
-            <span class="lang-en">Use hashtag #SophiaAndLiam</span>
-            <span class="lang-bn">হ্যাশট্যাগ #SophiaAndLiam</span>
+            <span class="lang-en">Limit plastic use, keep the Earth beautiful.</span>
+            <span class="lang-bn">প্লাস্টিকের ব্যবহার সীমিত করি, পৃথিবীকে সুন্দর রাখি</span>
         </p>
     </footer>
 
